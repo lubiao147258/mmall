@@ -1,6 +1,7 @@
 package com.mmall.utils;
 
 import java.security.MessageDigest;
+import java.util.Properties;
 
 public class MD5Util {
 
