@@ -51,4 +51,7 @@ public interface IUserService {
 
     //获取用户个人信息
     ServerResponse<User> getInformation(Integer userId);
+
+    //判断是否是管理员
+    ServerResponse checkAdminRole(User user);
 }
