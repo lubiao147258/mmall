@@ -4,6 +4,10 @@ import com.google.common.collect.Sets;
 
 import java.util.Set;
 
+/**
+ * @author lubiao
+ * @createDate 2018年03月16日 13:15:00
+ */
 public class Const {
     public static final String CURRENT_USER = "currentUser";
 

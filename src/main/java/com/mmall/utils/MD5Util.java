@@ -1,10 +1,14 @@
 package com.mmall.utils;
 
+
 import java.security.MessageDigest;
-import java.util.Properties;
 
+
+/**
+ * @author lubiao
+ * @createDate 2018年03月16日 13:31:00
+ */
 public class MD5Util {
-
     private static String byteArrayToHexString(byte b[]) {
         StringBuffer resultSb = new StringBuffer();
         for (int i = 0; i < b.length; i++)

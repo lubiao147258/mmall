@@ -3,15 +3,35 @@ package com.mmall.service;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 
+/**
+ * @author lubiao
+ * @createDate 2018年03月16日 13:17:00
+ */
 public interface IUserService {
 
-    //用户登录
+    /**
+     * 用户登录
+     * @param username  用户名
+     * @param password  密码
+     * @return  登录成功与否的status以及msg
+     */
     ServerResponse<User> login(String username , String password);
 
-    //用户注册
+
+    /**
+     * 用户注册
+     * @param user 注册用户对象
+     * @return  注册成功与否的status以及msg
+     */
     ServerResponse<String> register(User user);
 
-    //检查用户字段的合法性
+
+    /**
+     * 检查用户字段的合法性
+     * @param str 需要检查的字段名
+     * @param type 需要检查的字段类型（比如是用户名/还是邮箱）
+     * @return
+     */
     ServerResponse<String> checkValid(String str , String type);
 
     //修改密码时选择问题

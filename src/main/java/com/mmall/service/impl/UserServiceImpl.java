@@ -11,8 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.UUID;
 
+/**
+ * @author lubiao
+ * @createDate 2018年03月16日 13:17:00
+ */
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
@@ -40,6 +45,8 @@ public class UserServiceImpl implements IUserService {
 
 
     public ServerResponse<String> register(User user){
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
         //校验用户名
         ServerResponse validResponse = this.checkValid(user.getUsername() , Const.USERNAME);
         if(!validResponse.isSuccess()){
@@ -193,3 +200,4 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess(user);
     }
 }
+

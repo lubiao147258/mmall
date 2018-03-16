@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author lubiao
+ * @createDate 2018年03月16日 13:10:00
+ */
 @Controller
 @RequestMapping("/user/")
 public class UserController {
@@ -142,4 +146,5 @@ public class UserController {
         }
         return iUserService.getInformation(currentUser.getId());
     }
+
 }
