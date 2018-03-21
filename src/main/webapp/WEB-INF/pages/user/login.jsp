@@ -40,7 +40,7 @@
             </div>
             <div class="operate-box">
                 <label class="remember-me">
-                    <span id="free-register">免费注册</span></label>
+                    <a href="${basePath}/register" style="color: #0a0a0a;"><span id="free-register">免费注册</span></a></label>
                 <style>
                     #free-register:hover{
                         color: #F00;

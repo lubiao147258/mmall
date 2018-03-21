@@ -34,6 +34,7 @@ public interface IUserService {
      */
     ServerResponse<String> checkValid(String str , String type);
 
+
     //修改密码时选择问题
     ServerResponse selectQuestion(String username);
 
