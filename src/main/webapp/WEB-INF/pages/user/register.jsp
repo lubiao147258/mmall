@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="${basePath}/resources/images/favicon_logo.ico">
-    <title>用户注册录--MMall电商平台</title>
+    <title>用户注册--MMall电商平台</title>
     <link href="${basePath}/resources/css/style.min.css" rel="stylesheet">
     <link href="${basePath}/resources/css/style.css" rel="stylesheet">
     <link href="${basePath}/resources/css/font-awesome.min.css" rel="stylesheet">

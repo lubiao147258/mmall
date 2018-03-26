@@ -30,20 +30,20 @@ public class TokenCache {
                 }
             });
 
-    public static  void setKey(String key , String value){
+    public static void setKey(String key, String value) {
         loadCache.put(key, value);
     }
 
-    public static String getKey(String key){
+    public static String getKey(String key) {
         String value = null;
-        try{
+        try {
             value = loadCache.get(key);
-            if("null".equals(value)){
+            if ("null".equals(value)) {
                 return null;
             }
             return value;
-        }catch (Exception e){
-            logger.error("loadCache get error" , e);
+        } catch (Exception e) {
+            logger.error("loadCache get error", e);
         }
         return null;
     }
