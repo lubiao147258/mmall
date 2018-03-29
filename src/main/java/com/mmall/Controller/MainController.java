@@ -4,17 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * hjsdfjhasjkdhkhsadkjhkj
+ * main-controller
  *
  * @author lubiao
  * @createDate 2018年03月19日 14:11:00
  */
 
 @Controller
-@RequestMapping({"/", ""})
+@RequestMapping({"/login", "login"})
 public class MainController {
 
-    @RequestMapping("/")
+    @RequestMapping({"/", ""})
     public String toLoginpage() {
         return "/user/login";
     }
