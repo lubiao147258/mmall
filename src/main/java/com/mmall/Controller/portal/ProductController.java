@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @createDate 2018年03月30日 下午 02:46:00
  */
 @Controller
-@RequestMapping("/produce/")
+@RequestMapping("/product/")
 public class ProductController {
 
     @Autowired
