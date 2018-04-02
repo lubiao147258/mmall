@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping({"/login", "login"})
+@RequestMapping({"/", ""})
 public class MainController {
 
     @RequestMapping({"/", ""})
+    public String toIndexpage() {
+        return "/index";
+    }
+
+    @RequestMapping({"/login", "login"})
     public String toLoginpage() {
         return "/user/login";
     }
