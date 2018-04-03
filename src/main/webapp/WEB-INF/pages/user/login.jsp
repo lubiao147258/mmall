@@ -86,7 +86,8 @@
                                 $("#msgBox").modal('show');
                                 $("#msgBoxOKButton").on('click' , function(){
                                     //parent.window.location.reload();
-                                    window.location.href='${basePath}/product/list.do';
+                                    //window.location.href='${basePath}/';
+                                    window.location.href='${basePath}/manage/category/get_deep_category.do';
                                 });
                             } else {
                                 $("#msgBoxInfo").html(data.msg);
