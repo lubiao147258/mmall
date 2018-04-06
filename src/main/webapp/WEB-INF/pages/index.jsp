@@ -69,7 +69,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" timeType="timestamp" onclick="pushMyOrderMsg()">我的订单</a>
+                    <a href="#" timeType="timestamp">我的订单</a>
                 </li>
                 <li>
                     <a href="#" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank" >
@@ -98,36 +98,13 @@
             <div class="naver">
                 <ul class="clearfix">
                     <ul id="naver-list">
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>手机</span>
-                            </a>
-                        </li>
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>笔记本&平板</span>
-                            </a>
-                        </li>
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>智能穿戴</span>
-                            </a>
-                        </li>
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>智能家居</span>
-                            </a>
-                        </li>
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>通用配件</span>
-                            </a>
-                        </li>
-                        <li id="huawei">
-                            <a href="#" target="_blank">
-                                <span>专用配件</span>
-                            </a>
-                        </li>
+                        <c:forEach var="mainCategory" items="${categoryListVoList}">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <span>${mainCategory.name}</span>
+                                </a>
+                            </li>
+                        </c:forEach>
                     </ul>
                     <script>
                         $(function () {
@@ -171,124 +148,47 @@
             <div class="b">
                 <ol class="category-list">
                     <!-- 鼠标悬停增加ClassName： hover -->
+                    <c:forEach var="categoryItem" items="${categoryListVoList}">
                     <li id="zxnav_0" class="category-item " onmouseenter="showProList('zxnav_0')">
-                        <input id="zxnav_0_flag" type="hidden" autocomplete="off" value="no">
-                        <input id="zxnav_0_name" type="hidden" autocomplete="off" value="手机">
                         <div class="category-info">
                             <div>
-                                <a href="/list-36" target="_blank">
-										<span>手机
-										</span>
-                                </a>
+                                <a href="#" target="_blank"><span>${categoryItem.name}</span></a>
                             </div>
-                            <a href="/list-75" target="_blank">
-									<span>荣耀
-									</span>
-                            </a>
-                            <a href="/list-285" target="_blank">
-									<span>HUAWEI P系列
-									</span>
-                            </a>
+                            <c:forEach var="childCategoryItem" items="${categoryItem.categoryList}" begin="0" end="1" step="1">
+                                <a href="#" target="_blank"><span>${childCategoryItem.name}</span></a>
+                            </c:forEach>
                             <i class=""></i>
                         </div>
                         <div class="category-panels relative">
                             <div class="p-title">
-                                <a class="clearfix" href="/list-36" target="_blank">
-                                    <span class="fl">浏览手机频道</span>
+                                <a class="clearfix" href="#" target="_blank">
+                                    <span class="fl">浏览${categoryItem.name}频道</span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
-                                <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="荣耀">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
-                                    <a href="/list-75" target="_blank">
-                                        <span>荣耀</span>
-                                    </a>
-                                </li>
-                                <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="HUAWEI P系列">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
-                                    <a href="/list-285" target="_blank">
-                                        <span>HUAWEI P系列</span>
-                                    </a>
-                                </li>
-                                <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="荣耀畅玩系列">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
-                                    <a href="/list-77" target="_blank">
-                                        <span>荣耀畅玩系列</span>
-                                    </a>
-                                </li>
-                                <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="HUAWEI Mate系列">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
-                                    <a href="/list-76" target="_blank">
-                                        <span>HUAWEI Mate系列</span>
-                                    </a>
-                                </li>
+                                <c:forEach var="childCategoryItem" items="${categoryItem.categoryList}">
+                                    <li class="subcate-item">
+                                        <a href="#" target="_blank" style="border-radius:1px;border:1px solid #cccccc;padding: 2px;margin-right: 15px;">
+                                            <span>${childCategoryItem.name}</span>
+                                        </a>
+                                    </li>
+                                </c:forEach>
                             </ul>
-
-                            <div class="p-pro">
-                                <input id="pro_size" type="hidden" value="7">
-                                <ul id="zxnav_0_prolist" class="grid-list clearfix">
-                                    <li class="grid-items" onmouseenter="fixCurrent(this)" onmouseleave="leaveCurrent(this)">
-                                        <a class="thumb" target="_blank" href="/product/396602535.html" onclick="pushNavIndexProImgMsg('616330979','/product/396602535.html')">
-                                            <p class="grid-img">
-                                                <img alt="" src="https://res.vmallres.com/pimages//product/6901443200115/142_142_1507794825491mp.jpg"> </p>
-                                            <div class="grid-title">HUAWEI Mate 10</div>
-                                            <p class="grid-price">¥3899</p>
-                                        </a>
-                                    </li>
-                                    <li class="grid-items" onmouseenter="fixCurrent(this)" onmouseleave="leaveCurrent(this)">
-                                        <a class="thumb" target="_blank" href="/product/570379791.html" onclick="pushNavIndexProImgMsg('464599242','/product/570379791.html')">
-                                            <p class="grid-img">
-                                                <img alt="" src="https://res.vmallres.com/pimages//product/6901443210244/142_142_1511747365975mp.jpg"> </p>
-                                            <div class="grid-title">荣耀V10</div>
-                                            <p class="grid-price">¥2799</p>
-                                        </a>
-                                    </li>
-                                    <li class="grid-items" onmouseenter="fixCurrent(this)" onmouseleave="leaveCurrent(this)">
-                                        <a class="thumb" target="_blank" href="/product/135859985.html" onclick="pushNavIndexProImgMsg('838609944','/product/135859985.html')">
-                                            <p class="grid-img">
-                                                <img alt="" src="https://res.vmallres.com/pimages//product/6901443210466/142_142_1518483360291mp.jpg"> </p>
-                                            <div class="grid-title">HUAWEI nova 2s</div>
-                                            <p class="grid-price">¥2599</p>
-                                        </a>
-                                    </li>
-                                    <li class="grid-items" onmouseenter="fixCurrent(this)" onmouseleave="leaveCurrent(this)">
-                                        <a class="thumb" target="_blank" href="/product/501317311.html" onclick="pushNavIndexProImgMsg('165093905','/product/501317311.html')">
-                                            <p class="grid-img">
-                                                <img alt="" src="https://res.vmallres.com/pimages//product/6901443211937/142_142_1513560677378mp.jpg"> </p>
-                                            <div class="grid-title">荣耀9青春版</div>
-                                            <p class="grid-price">¥1099</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <input id="zxnav_0_skuIds" type="hidden" value="616330979,464599242,838609944,165093905,">
-                            </div>
-                        </div>
-                    </li>
-                    <li id="zxnav_1" class="category-item odd" onmouseenter="showProList('zxnav_1')">
+                    </c:forEach>
+                    <%--<li id="zxnav_1" class="category-item odd">
                         <input id="zxnav_1_flag" type="hidden" autocomplete="off" value="no">
                         <input id="zxnav_1_name" type="hidden" autocomplete="off" value="笔记本 &amp; 平板">
                         <div class="category-info">
                             <div>
                                 <a href="/list-40" target="_blank">
-										<span>笔记本 &amp; 平板
-										</span>
+										<span>笔记本 &amp; 平板</span>
                                 </a>
                             </div>
                             <a href="/list-41" target="_blank">
-									<span>平板电脑
-									</span>
+									<span>平板电脑</span>
                             </a>
                             <a href="/list-42" target="_blank">
-									<span>笔记本电脑
-									</span>
+									<span>笔记本电脑</span>
                             </a>
                             <i class=""></i>
                         </div>
@@ -296,30 +196,20 @@
                             <div class="p-title">
                                 <a class="clearfix" href="/list-40" target="_blank">
                                     <span class="fl">浏览笔记本 &amp; 平板频道</span>
-                                    <span class="fr btn-next"> > </span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="平板电脑">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-41" target="_blank">
                                         <span>平板电脑</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="笔记本电脑">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-42" target="_blank">
                                         <span>笔记本电脑</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="笔记本配件">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-317">
                                         <span>笔记本配件</span>
                                     </a>
@@ -372,21 +262,17 @@
                         <div class="category-info">
                             <div>
                                 <a href="/list-59" target="_blank">
-										<span>智能穿戴
-										</span>
+										<span>智能穿戴</span>
                                 </a>
                             </div>
                             <a href="/list-241" target="_blank">
-									<span>手环
-									</span>
+									<span>手环</span>
                             </a>
                             <a href="/list-247" target="_blank">
-									<span>手表
-									</span>
+									<span>手表</span>
                             </a>
                             <a href="/list-329" target="_blank">
-									<span>VR
-									</span>
+									<span>VR</span>
                             </a>
                             <i class=""></i>
                         </div>
@@ -394,30 +280,20 @@
                             <div class="p-title">
                                 <a class="clearfix" href="/list-59" target="_blank">
                                     <span class="fl">浏览智能穿戴频道</span>
-                                    <span class="fr btn-next"> > </span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="手环">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-241" target="_blank">
                                         <span>手环</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="手表">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-247" target="_blank">
                                         <span>手表</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="VR">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-329" target="_blank">
                                         <span>VR</span>
                                     </a>
@@ -470,17 +346,14 @@
                         <div class="category-info">
                             <div>
                                 <a href="/list-43" target="_blank">
-										<span>智能家居
-										</span>
+                                    <span>智能家居</span>
                                 </a>
                             </div>
                             <a href="/list-45">
-									<span>路由器
-									</span>
+									<span>路由器</span>
                             </a>
                             <a href="/list-46" target="_blank">
-									<span>电视盒子
-									</span>
+									<span>电视盒子</span>
                             </a>
                             <i class=""></i>
                         </div>
@@ -488,22 +361,15 @@
                             <div class="p-title">
                                 <a class="clearfix" href="/list-43" target="_blank">
                                     <span class="fl">浏览智能家居频道</span>
-                                    <span class="fr btn-next"> > </span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="路由器">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-45">
                                         <span>路由器</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="电视盒子">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-46" target="_blank">
                                         <span>电视盒子</span>
                                     </a>
@@ -556,21 +422,17 @@
                         <div class="category-info">
                             <div>
                                 <a href="/list-54" target="_blank">
-										<span>通用配件
-										</span>
+										<span>通用配件</span>
                                 </a>
                             </div>
                             <a href="/list-56" target="_blank">
-									<span>移动电源
-									</span>
+									<span>移动电源</span>
                             </a>
                             <a href="/list-229" target="_blank">
-									<span>耳机
-									</span>
+									<span>耳机</span>
                             </a>
                             <a href="/list-55" target="_blank">
-									<span>音箱
-									</span>
+									<span>音箱</span>
                             </a>
                             <i class=""></i>
                         </div>
@@ -578,54 +440,35 @@
                             <div class="p-title">
                                 <a class="clearfix" href="/list-54" target="_blank">
                                     <span class="fl">浏览通用配件频道</span>
-                                    <span class="fr btn-next"> > </span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="移动电源">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-56" target="_blank">
                                         <span>移动电源</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="耳机">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-229" target="_blank">
                                         <span>耳机</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="音箱">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-55" target="_blank">
                                         <span>音箱</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="自拍杆/支架">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-231" target="_blank">
                                         <span>自拍杆</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="充电器/线材">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-58" target="_blank">
                                         <span>充电器</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="U盘/存储卡">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-83" target="_blank">
                                         <span>U盘</span>
                                     </a>
@@ -678,17 +521,14 @@
                         <div class="category-info">
                             <div>
                                 <a href="/list-47" target="_blank">
-										<span>专属配件
-										</span>
+										<span>专属配件</span>
                                 </a>
                             </div>
                             <a href="/list-48" target="_blank">
-									<span>保护壳/套
-									</span>
+									<span>保护壳/套</span>
                             </a>
                             <a href="/list-50" target="_blank">
-									<span>贴膜
-									</span>
+									<span>贴膜</span>
                             </a>
                             <i class=""></i>
                         </div>
@@ -701,17 +541,11 @@
                             </div>
                             <ul class="subcate-list clearfix">
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="保护壳">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-48" target="_blank">
                                         <span>保护壳/套</span>
                                     </a>
                                 </li>
                                 <li class="subcate-item">
-                                    <input id="child_name" type="hidden" value="贴膜">
-                                    <input id="child_status" type="hidden" value="1">
-                                    <input id="child_type" type="hidden" value="1">
                                     <a href="/list-50" target="_blank">
                                         <span>贴膜</span>
                                     </a>
@@ -757,7 +591,7 @@
                                 <input id="zxnav_5_skuIds" type="hidden" value="802846922,70658365,629113358,309454040,">
                             </div>
                         </div>
-                    </li>
+                    </li>--%>
                 </ol>
             </div>
             <!-- 20170223-分类-end -->

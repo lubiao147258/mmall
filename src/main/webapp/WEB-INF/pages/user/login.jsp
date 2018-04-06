@@ -82,13 +82,11 @@
                         dataType : 'json',
                         success : function(data) {
                             if (data.status == '0') {
-                                $("#msgBoxInfo").html(data.msg);
+                                window.location.href='${basePath}/';
+                                /*$("#msgBoxInfo").html(data.msg);
                                 $("#msgBox").modal('show');
                                 $("#msgBoxOKButton").on('click' , function(){
-                                    //parent.window.location.reload();
-                                    //window.location.href='${basePath}/';
-                                    window.location.href='${basePath}/manage/category/get_deep_category.do';
-                                });
+                                });*/
                             } else {
                                 $("#msgBoxInfo").html(data.msg);
                                 $("#msgBox").modal('show');

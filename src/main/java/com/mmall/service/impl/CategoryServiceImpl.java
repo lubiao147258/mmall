@@ -2,10 +2,12 @@ package com.mmall.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
 import com.mmall.pojo.Category;
 import com.mmall.service.ICategoryService;
+import com.mmall.vo.CategoryListVo;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -107,6 +109,38 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return ServerResponse.createBySuccess(categoryIdList);
     }
+
+    /**
+     * 查询所有一级分类及对应的二级分类
+     * @return
+     */
+    @Override
+    public List<CategoryListVo> getCategoryAndChildrenCategory() {
+        List<CategoryListVo> categoryListVoList = Lists.newArrayList();
+        List<Category> categoryList = this.categoryMapper.selectCategoryChildrenByParentId(Const.PARENTID);//所有的一级分类
+        for(Category category : categoryList){
+            CategoryListVo categoryListVo = assembleCategoryListVo(category);
+            categoryListVoList.add(categoryListVo);
+        }
+        return categoryListVoList;
+    }
+
+    /**
+     * 组装CategoryListVo
+     * @param category
+     * @return
+     */
+    private CategoryListVo assembleCategoryListVo(Category category){
+        CategoryListVo categoryListVo = new CategoryListVo();
+        categoryListVo.setId(category.getId());
+        categoryListVo.setParentId(category.getParentId());
+        categoryListVo.setName(category.getName());
+        categoryListVo.setStatus(category.getStatus());
+        categoryListVo.setCategoryList(this.categoryMapper.selectCategoryChildrenByParentId(category.getId()));
+        return categoryListVo;
+    }
+
+
 
 
     //递归算法,算出子节点
