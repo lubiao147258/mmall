@@ -100,13 +100,13 @@
                     <ul id="naver-list">
                         <c:forEach var="mainCategory" items="${categoryListVoList}">
                             <li><%--${basePath}/product/list.do?categoryId=${mainCategory.id}--%>
-                                <a href="${basePath}/product/list.do?categoryId=${mainCategory.id}" target="_blank">
+                                <a href="#" onclick="goCategory(${mainCategory.id})">
                                     <span>${mainCategory.name}</span>
                                 </a>
                             </li>
                         </c:forEach>
                     </ul>
-                    <form id="hiddenForm" action="${basePath}/product/listByCategory" method="post">
+                    <form id="hiddenForm" action="${basePath}/product/listByCategory" method="post" target="_blank">
                         <input type="hidden" name="categoryId" id="hiddenId" />
                     </form>
                     <script>
