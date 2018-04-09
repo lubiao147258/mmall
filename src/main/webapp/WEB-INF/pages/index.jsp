@@ -99,14 +99,22 @@
                 <ul class="clearfix">
                     <ul id="naver-list">
                         <c:forEach var="mainCategory" items="${categoryListVoList}">
-                            <li>
-                                <a href="#" target="_blank">
+                            <li><%--${basePath}/product/list.do?categoryId=${mainCategory.id}--%>
+                                <a href="${basePath}/product/list.do?categoryId=${mainCategory.id}" target="_blank">
                                     <span>${mainCategory.name}</span>
                                 </a>
                             </li>
                         </c:forEach>
                     </ul>
+                    <form id="hiddenForm" action="${basePath}/product/listByCategory" method="post">
+                        <input type="hidden" name="categoryId" id="hiddenId" />
+                    </form>
                     <script>
+                        function goCategory(categoryId){
+                            $("#hiddenId").val(categoryId);
+                            $("#hiddenForm").submit();
+                        }
+
                         $(function () {
                             $('#naver-list li').hover(function () {
                                 $(this).addClass('hover');
@@ -114,6 +122,8 @@
                                 $(this).removeClass('hover');
                             });
                         });
+
+
                     </script>
                 </ul>
             </div>
@@ -124,8 +134,8 @@
             <!-- 2017-02-15-搜索条-焦点为search-form增加className:hover -start -->
             <div class="search-bar relative" id="searchBar-area">
                 <div class="search-bar-form" id="search-bar-form">
-                    <form method="get" onsubmit="return search(this)">
-                        <input type="text" class="text" maxlength="200" id="search-kw" autocomplete="off" placeholder="根据关键字搜索商品"/>
+                    <form method="post" action="${basePath}/product/list.do">
+                        <input type="text" class="text" name="keyword" maxlength="200" id="search-kw" autocomplete="off" placeholder="根据关键字搜索商品"/>
                         <input type="submit" class="button" value="搜索" />
                     </form>
                 </div>
@@ -3151,6 +3161,10 @@
     </a>
 </div>
 <!-- 2017-02-15-悬浮工具栏-end -->
+
+<!--    提示框 start -->
+<%@include file="../common/msgBox.jsp"%>
+<!--    提示框 -->
 </body>
 
 </html>
