@@ -41,6 +41,13 @@ public class ProductManageController {
     @Autowired
     private IFileService iFileService;
 
+
+    @RequestMapping({"","/"})
+    public String goCategoryPage(){
+        return "/admin/manageCategory";
+    }
+
+
     /**
      * 添加产品或者修改产品
      *

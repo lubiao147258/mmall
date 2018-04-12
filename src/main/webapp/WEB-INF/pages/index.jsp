@@ -106,7 +106,7 @@
                             </li>
                         </c:forEach>
                     </ul>
-                    <form id="hiddenForm" action="${basePath}/product/listByCategory" method="post" target="_blank">
+                    <form id="hiddenForm" action="${basePath}/product/list.do" method="post" target="_blank">
                         <input type="hidden" name="categoryId" id="hiddenId" />
                     </form>
                     <script>
@@ -162,23 +162,23 @@
                     <li id="zxnav_0" class="category-item " onmouseenter="showProList('zxnav_0')">
                         <div class="category-info">
                             <div>
-                                <a href="#" target="_blank"><span>${categoryItem.name}</span></a>
+                                <a href="#" onclick="goCategory(${categoryItem.id})"><span>${categoryItem.name}</span></a>
                             </div>
                             <c:forEach var="childCategoryItem" items="${categoryItem.categoryList}" begin="0" end="1" step="1">
-                                <a href="#" target="_blank"><span>${childCategoryItem.name}</span></a>
+                                <a href="#" onclick="goCategory(${childCategoryItem.id})"><span>${childCategoryItem.name}</span></a>
                             </c:forEach>
                             <i class=""></i>
                         </div>
                         <div class="category-panels relative">
                             <div class="p-title">
-                                <a class="clearfix" href="#" target="_blank">
+                                <a class="clearfix" href="#" onclick="goCategory(${categoryItem.id})">
                                     <span class="fl">浏览${categoryItem.name}频道</span>
                                 </a>
                             </div>
                             <ul class="subcate-list clearfix">
                                 <c:forEach var="childCategoryItem" items="${categoryItem.categoryList}">
                                     <li class="subcate-item">
-                                        <a href="#" target="_blank" style="border-radius:1px;border:1px solid #cccccc;padding: 2px;margin-right: 15px;">
+                                        <a href="#" onclick="goCategory(${childCategoryItem.id})" style="border-radius:1px;border:1px solid #cccccc;padding: 2px;margin-right: 15px;">
                                             <span>${childCategoryItem.name}</span>
                                         </a>
                                     </li>
