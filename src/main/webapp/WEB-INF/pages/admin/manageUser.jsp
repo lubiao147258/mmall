@@ -137,9 +137,9 @@
 
                             <div class="card-header">
                                 <i class="fa fa-code"></i> 用户管理
-                                <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                                <%--<button type="button" class="btn btn-success float-right" data-toggle="modal"
                                         data-target="#myModal">添加用户
-                                </button>
+                                </button>--%>
                             </div>
                             <div class="card-block">
                                 <table class="table user-table table-striped">
@@ -150,68 +150,31 @@
                                         <th>邮箱</th>
                                         <th>电话</th>
                                         <th>问题</th>
-                                        <th>答案</th>
+                                        <%--<th>答案</th>--%>
                                         <th>角色</th>
                                         <th style="text-align: center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>张珊</td>
-                                        <td>1111@qq.com</td>
-                                        <td>13399999999</td>
-                                        <td>我是谁？</td>
-                                        <td>我是你爸爸</td>
-                                        <td>普通用户</td>
-                                        <td>
-                                            <button class="badge badge-edit">编辑</button>
-                                            <button class="badge badge-star">启动</button>
-                                            <button class="badge badge-pwd">重启密码</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>王茜茜</td>
-                                        <td>123590@qq.com</td>
-                                        <td>18799999999</td>
-                                        <td>我老师是谁？</td>
-                                        <td>不告诉你</td>
-                                        <td>管理员</td>
-                                        <td>
-                                            <button class="badge badge-edit">编辑</button>
-                                            <button class="badge badge-star">启动</button>
-                                            <button class="badge badge-pwd">重启密码</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>张毅</td>
-                                        <td>14808480358@qq.com</td>
-                                        <td>32453453453</td>
-                                        <td>我喜欢的人是谁？</td>
-                                        <td>瞎子</td>
-                                        <td>普通用户</td>
-                                        <td>
-                                            <button class="badge badge-edit">编辑</button>
-                                            <button class="badge badge-star">启动</button>
-                                            <button class="badge badge-pwd">重启密码</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>海哲</td>
-                                        <td>123590@qq.com</td>
-                                        <td>18799999999</td>
-                                        <td>我的生日是？</td>
-                                        <td>某年某月某天</td>
-                                        <td>管理员</td>
-                                        <td>
-                                            <button class="badge badge-edit">编辑</button>
-                                            <button class="badge badge-star">启动</button>
-                                            <button class="badge badge-pwd">重启密码</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="userList" items="${userList}" varStatus="varStatus">
+                                        <tr>
+                                            <td>${varStatus.index+1}</td>
+                                            <td>${userList.username}</td>
+                                            <td>${userList.email}</td>
+                                            <td>${userList.phone}</td>
+                                            <td>${userList.question}</td>
+                                            <%--<td>${userList.answer}</td>--%>
+                                            <td>
+                                                <c:if test="${userList.role eq 0}">普通用户</c:if>
+                                                <c:if test="${userList.role eq 1}">管理员</c:if>
+                                            </td>
+                                            <td>
+                                                <button class="badge badge-edit">编辑</button>
+                                                <button class="badge badge-star">启动</button>
+                                                <button class="badge badge-pwd">重启密码</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                                 <%--<ul class="pagination float-right">

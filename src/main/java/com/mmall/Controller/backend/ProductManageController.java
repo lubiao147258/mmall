@@ -44,7 +44,7 @@ public class ProductManageController {
 
     @RequestMapping({"","/"})
     public String goCategoryPage(){
-        return "/admin/manageCategory";
+        return "/admin/manageUser";
     }
 
 

@@ -6,11 +6,13 @@ import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 /**
@@ -40,5 +42,13 @@ public class UserManageController {
         }
         return response;
     }
+
+    @RequestMapping({"","/"})
+    public String goCategoryPage(Model model){
+        //List<User> userList = iUserService.getUserList();
+        //model.addAttribute("userList",userList);
+        return "/admin/manageUser";
+    }
+
 
 }

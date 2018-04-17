@@ -1,7 +1,10 @@
 package com.mmall.service;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
+
+import java.util.List;
 
 /**
  * @author lubiao
@@ -55,4 +58,7 @@ public interface IUserService {
 
     //判断是否是管理员
     ServerResponse checkAdminRole(User user);
+
+    //获取userlist
+    ServerResponse<PageInfo> getUserList(String keyword, int pageNum, int pageSize);
 }
