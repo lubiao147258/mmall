@@ -156,14 +156,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="userList" items="${userList}" varStatus="varStatus">
+                                    <c:forEach var="userList" items="${page.list}" varStatus="varStatus">
                                         <tr>
                                             <td>${varStatus.index+1}</td>
                                             <td>${userList.username}</td>
                                             <td>${userList.email}</td>
                                             <td>${userList.phone}</td>
                                             <td>${userList.question}</td>
-                                            <%--<td>${userList.answer}</td>--%>
                                             <td>
                                                 <c:if test="${userList.role eq 0}">普通用户</c:if>
                                                 <c:if test="${userList.role eq 1}">管理员</c:if>

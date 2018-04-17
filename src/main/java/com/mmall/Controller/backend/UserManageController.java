@@ -1,5 +1,6 @@
 package com.mmall.Controller.backend;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -44,10 +46,16 @@ public class UserManageController {
     }
 
     @RequestMapping({"","/"})
-    public String goCategoryPage(Model model){
-        //List<User> userList = iUserService.getUserList();
-        //model.addAttribute("userList",userList);
-        return "/admin/manageUser";
+    @ResponseBody
+    public ServerResponse<PageInfo> goCategoryPage(
+            @RequestParam(value = "username",required = false) String username,
+            @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+            @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
+            Model model){
+        ServerResponse<PageInfo> page = iUserService.getUserList(username , pageNum , pageSize);
+        model.addAttribute("page",page.getData());
+        //return "/admin/manageUser";
+        return page;
     }
 
 

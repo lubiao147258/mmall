@@ -1,5 +1,6 @@
 package com.mmall.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
@@ -217,13 +218,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ServerResponse<PageInfo> getUserList(String keyword, int pageNum, int pageSize) {
-        if(StringUtils.isNotBlank(keyword)){
-            keyword = new StringBuilder().append("%").append(keyword).append("%").toString();
+    public ServerResponse<PageInfo> getUserList(String username, int pageNum, int pageSize) {
+        if(StringUtils.isNotBlank(username)){
+            username = new StringBuilder().append("%").append(username).append("%").toString();
         }
-        //List<User> userList = userMapper.
-        //return userMapper.getUserList();
-        return null;
+        List<User> userList = userMapper.getUserList(StringUtils.isBlank(username)?null:username);
+        PageHelper.startPage(pageNum,pageSize);
+        PageInfo pageInfo = new PageInfo(userList);
+        pageInfo.setList(userList);
+        return ServerResponse.createBySuccess(pageInfo);
+
     }
 
 }

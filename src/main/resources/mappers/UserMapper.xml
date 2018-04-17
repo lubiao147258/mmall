@@ -216,6 +216,11 @@
     select
     <include refid="Base_Column_List" />
     from mmall_user
+    <where>
+      <if test="username != null">
+        and username like #{username}
+      </if>
+    </where>
     ORDER BY create_time asc
   </select>
 

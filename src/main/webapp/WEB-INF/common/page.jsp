@@ -3,35 +3,35 @@
 
 <div class="up-clearfix pagination_box"
 	style="line-height: 63px; padding-right: 30px;">
-	<span class="up-pull-left">共有${page.dataCount }条数据,页次:${page.pageNum  }/${page.pageCount == 0 ? 1 : page.pageCount }&emsp;</span>
+	<span class="up-pull-left">共有${page.total }条数据,页次:${page.pageNum  }/${page.pages == 0 ? 1 : page.pages }&emsp;</span>
 	<ul class="up-pagination up-pagination-sm up-pull-left">
-		<c:if test="${!page.hasPrePage }">
+		<c:if test="${!page.hasPreviousPage }">
 			<li class="up-disabled"><a href="javascript:void(0)"
 				aria-label="Previous"> <span aria-hidden="true"> <<上一页</span>
 			</a></li>
 		</c:if>
-		<c:if test="${page.hasPrePage }">
+		<c:if test="${page.hasPreviousPage }">
 			<li><a href="javascript:toPage(${page.prePage})"
 				aria-label="Previous"> <span aria-hidden="true"> <<上一页</span>
 			</a></li>
 		</c:if>
 
-		<c:if test="${page.pageNum <=3  &&  page.pageCount >= 5}">
+		<c:if test="${page.pageNum <=3  &&  page.pages >= 5}">
 			<c:forEach var="pgNum" begin="1" end="5">
 				<li <c:if test="${page.pageNum == pgNum }">class="up-active"</c:if>>
 					<a href="javascript:toPage(${pgNum})">${pgNum}</a>
 				</li>
 			</c:forEach>
 		</c:if>
-		<c:if test="${page.pageNum <=3 &&  page.pageCount < 5}">
-			<c:forEach var="pgNum" begin="1" end="${page.pageCount  }">
+		<c:if test="${page.pageNum <=3 &&  page.pages < 5}">
+			<c:forEach var="pgNum" begin="1" end="${page.pages  }">
 				<li <c:if test="${page.pageNum == pgNum }">class="up-active"</c:if>>
 					<a href="javascript:toPage(${pgNum})">${pgNum}</a>
 				</li>
 			</c:forEach>
 		</c:if>
 
-		<c:if test="${page.pageNum >3 &&  page.pageCount >= page.pageNum +2 }">
+		<c:if test="${page.pageNum >3 &&  page.pages >= page.pageNum +2 }">
 			<c:forEach var="pgNum" begin="${page.pageNum -2 }"
 				end="${page.pageNum +2 }">
 				<li <c:if test="${page.pageNum == pgNum }">class="up-active"</c:if>>
@@ -39,10 +39,10 @@
 				</li>
 			</c:forEach>
 		</c:if>
-		<c:if test="${page.pageNum >3 &&  page.pageCount < page.pageNum +2 }">
+		<c:if test="${page.pageNum >3 &&  page.pages < page.pageNum +2 }">
 			<c:forEach var="pgNum"
-				begin="${ (page.pageCount -4) < 1 ?  1 : (page.pageCount -4)  }"
-				end="${page.pageCount }">
+				begin="${ (page.pages -4) < 1 ?  1 : (page.pages -4)  }"
+				end="${page.pages }">
 				<li <c:if test="${page.pageNum == pgNum }">class="up-active"</c:if>>
 					<a href="javascript:toPage(${pgNum})">${pgNum}</a>
 				</li>
@@ -92,7 +92,7 @@ function goToPage(){
 		return;
 	}
 
-	if(pageNum > ${page.pageCount}){
+	if(pageNum > ${page.pages}){
 		$("#msgBoxInfo").html("输入的页数超过总页数");
 		$('#msgBox').modal('show');
 		$("#toPageNum").val("");
