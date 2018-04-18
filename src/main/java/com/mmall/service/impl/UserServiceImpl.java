@@ -1,5 +1,6 @@
 package com.mmall.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
@@ -221,11 +222,22 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<PageInfo> getUserList(String username, int pageNum, int pageSize) {
         if(StringUtils.isNotBlank(username)){
             username = new StringBuilder().append("%").append(username).append("%").toString();
+        }else{
+            username = new StringBuilder().append("%").append("").append("%").toString();
         }
         List<User> userList = userMapper.getUserList(StringUtils.isBlank(username)?null:username);
-        PageHelper.startPage(pageNum,pageSize);
-        PageInfo pageInfo = new PageInfo(userList);
+        Page page = PageHelper.startPage(pageNum,pageSize);
+        PageInfo pageInfo = new PageInfo(page);
+        pageInfo.setStartRow(((pageNum - 1) * pageSize) + 1);
+        pageInfo.setEndRow(pageSize - 1 + pageInfo.getStartRow());
+        pageInfo.setPageNum(pageNum);
+        pageInfo.setPageSize(pageSize);
         pageInfo.setList(userList);
+        System.out.println(" username 的值为：" + username);
+        System.out.println(" pageNum 的值为：" + pageNum);
+        System.out.println(" pageSize 的值为：" + pageSize);
+        System.out.println(" StartRow 的值为：" + pageInfo.getStartRow());
+        System.out.println(" EndRow 的值为：" + pageInfo.getEndRow());
         return ServerResponse.createBySuccess(pageInfo);
 
     }

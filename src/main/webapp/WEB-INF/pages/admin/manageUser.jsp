@@ -85,56 +85,37 @@
             <li class="breadcrumb-item active"><a href="#">用户管理</a></li>
         </ol>
 
+        <div class="container-fluid" >
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-content" style="padding-bottom:7px;">
+                            <div id="forSearch">
+                                <form action="${basePath}/manage/user" method="post" id="searchForm">
+                                    <input type="hidden" id="pageNum" name="pageNum" value="1">
+                                    <ul class="form-inline">
+                                        <li class="form-group">
+                                            <label for="name">用户名:</label>
+                                            <input type="text" id="" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
+                                        </li>
+                                        <li class="form-group-btn" >
+                                            <button  type="reset" class="btn btn-warning">重置</button>
+                                            <input type="submit" class="btn btn-primary" value="搜索"/>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid">
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="from-search">
-                            <ul class="form-inline">
-                                <li class="form-group">
-                                    <label for="exampleInputName">姓名</label>
-                                    <input type="text" class="form-control" id="exampleInputName">
-                                </li>
-                                <li class="form-group">
-                                    <label for="exampleInputEmail">账号</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail">
-                                </li>
-                                <li class="form-group">
-                                    <label for="exampleInputUser">角色</label>
-                                    <select type="text" id="exampleInputUser" class="form-control">
-                                        <option>请选择</option>
-                                        <option>教师</option>
-                                        <option>学生</option>
-                                        <option>管理员</option>
-                                    </select>
-                                </li>
-                                <li class="form-group">
-                                    <label for="exampleInputTech">技术方向</label>
-                                    <select type="text" id="exampleInputTech" class="form-control ">
-                                        <option>请选择</option>
-                                        <option>JAVA</option>
-                                        <option>C++</option>
-                                        <option>测试</option>
-                                        <option>HTML</option>
-                                    </select>
-                                </li>
-                                <li class="form-group">
-                                    <label for="exampleInputRank">岗位等级</label>
-                                    <select type="text" id="exampleInputRank" class="form-control ">
-                                        <option>请选择</option>
-                                        <option>未评定</option>
-                                        <option>1级</option>
-                                        <option>2级</option>
-                                    </select>
-                                </li>
-                                <li class="form-group-btn">
-                                    <button type="submit" class="btn btn-secondary">重置</button>
-                                    <button type="submit" class="btn btn-primary">搜索</button>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="card">
-
                             <div class="card-header">
                                 <i class="fa fa-code"></i> 用户管理
                                 <%--<button type="button" class="btn btn-success float-right" data-toggle="modal"

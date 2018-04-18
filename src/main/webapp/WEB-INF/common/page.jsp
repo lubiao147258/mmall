@@ -76,6 +76,8 @@ function toPage(page){
 	var url = window.location.href;
 	$("#pageNum").val(page);
 	$("#searchForm").attr("action",url);
+	alert("url:" + url);
+	alert("pageNum:" + page);
 	$("#searchForm").submit();
 }
 
