@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="${basePath}/resources/images/favicon_logo.ico">
-    <title>后台——Mmall商城</title>
+    <title>用户管理</title>
     <link href="${basePath}/resources/css/style.min.css" rel="stylesheet">
     <link href="${basePath}/resources/css/style.css" rel="stylesheet">
     <link href="${basePath}/resources/css/font-awesome.min.css" rel="stylesheet">
@@ -22,6 +22,22 @@
     <script src="${basePath}/resources/js/libs/respond.min.js"></script>
     <script src="${basePath}/resources/js/libs/html5shiv.min.js"></script>
     <![endif]- ->
+    <script>
+        $(document).ready(function() {
+            //显示查询条件
+            var typeCondition = $('#roleInput').val();
+            $('#role').val(typeCondition);
+
+            $("#role").change(function(){
+                $("#searchForm").submit();
+            });
+
+        });
+        function resett(){
+            $("#username").val("");
+            $("#role").val("");
+        }
+    </script>
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 <header class="app-header navbar">
@@ -39,7 +55,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                <img src="images/header_user.jpg" class="img-avatar" alt="头像">
+                <%--<img src="images/header_user.jpg" class="img-avatar" alt="头像">--%>
                 <span class="hidden-md-down">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -63,7 +79,7 @@
                     <a class="nav-link active" href="#"><i class="fa fa-user"></i> 用户管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-pie-chart"></i> 分类管理</a>
+                    <a class="nav-link" href="${basePath}/manage/category"><i class="icon-pie-chart"></i> 分类管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-notebook"></i> 商品管理</a>
@@ -92,14 +108,23 @@
                         <div class="card-content" style="padding-bottom:7px;">
                             <div id="forSearch">
                                 <form action="${basePath}/manage/user" method="post" id="searchForm">
-                                    <input type="hidden" id="pageNum" name="pageNum" value="1">
+                                        <input type="hidden" id="pageNum" name="pageNum" value="1">
                                     <ul class="form-inline">
                                         <li class="form-group">
-                                            <label for="name">用户名:</label>
-                                            <input type="text" id="" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
+                                            <label>用户名:</label>
+                                            <input type="text" id="username" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
+                                        </li>
+                                        <li class="form-group">
+                                            <label>角色类型:</label>
+                                            <input type="hidden" value="${role }" id="roleInput">
+                                            <select type="text" id="role" name="role" class="form-control ">
+                                                <option value="">所有用户</option>
+                                                <option value="0">普通用户</option>
+                                                <option value="1">管理员</option>
+                                            </select>
                                         </li>
                                         <li class="form-group-btn" >
-                                            <button  type="reset" class="btn btn-warning">重置</button>
+                                            <button  type="button" class="btn btn-warning" onclick="resett()">重置</button>
                                             <input type="submit" class="btn btn-primary" value="搜索"/>
                                         </li>
                                     </ul>
@@ -139,8 +164,8 @@
                                     <tbody>
                                     <c:forEach var="userList" items="${page.list}" varStatus="varStatus">
                                         <tr>
-                                            <td>${varStatus.index+1}</td>
-                                            <td>${userList.username}</td>
+                                            <td>${varStatus.index+1 + (page.pageNum - 1) * page.pageSize}</td>
+                                            <td class="d">${userList.username}</td>
                                             <td>${userList.email}</td>
                                             <td>${userList.phone}</td>
                                             <td>${userList.question}</td>
@@ -150,28 +175,18 @@
                                             </td>
                                             <td>
                                                 <button class="badge badge-edit">编辑</button>
-                                                <button class="badge badge-star">启动</button>
-                                                <button class="badge badge-pwd">重启密码</button>
+                                                <button class="badge badge-star">设为管理员</button>
+                                                <button class="badge badge-pwd">重置密码</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                                <%--<ul class="pagination float-right">
-                                    <li class="page-item"><a class="page-link" href="#">上一页</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">下一页</a>
-                                    </li>
-                                </ul>--%>
+                                <script type="text/javascript">
+                                    $('.d').html(function(i,oldHTML){
+                                        return oldHTML.replace(/${username}/g,'<font color="red">${username}</font>');
+                                    })
+                                </script>
                                 <div class="up-clearfix">
                                     <div class="up-pull-right">
                                         <%@include file="../../common/page.jsp"%>
@@ -180,18 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--/.col-->
-
-
-                    <!--/.col-->
                 </div>
-                <!--/.row-->
-
-
-                <!--/.row-->
-
-
-                <!--/.row-->
             </div>
 
         </div>
@@ -199,7 +203,7 @@
 </div>
 
 <!-- /.modal-content -->
-<div class="modal animate-fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<%--<div class="modal animate-fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -306,9 +310,9 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary">确认</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
+        </div>
+    </div>
+</div>--%>
 <!--    提示框 start -->
 <%@include file="../../common/msgBox.jsp"%>
 <!--    提示框 -->

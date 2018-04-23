@@ -136,6 +136,8 @@ public class CategoryServiceImpl implements ICategoryService {
         categoryListVo.setParentId(category.getParentId());
         categoryListVo.setName(category.getName());
         categoryListVo.setStatus(category.getStatus());
+        categoryListVo.setCreateTime(category.getCreateTime());
+        categoryListVo.setUpdateTime(category.getUpdateTime());
         categoryListVo.setCategoryList(this.categoryMapper.selectCategoryChildrenByParentId(category.getId()));
         return categoryListVo;
     }

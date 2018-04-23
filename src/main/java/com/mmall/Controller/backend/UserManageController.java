@@ -46,30 +46,17 @@ public class UserManageController {
     }
 
     @RequestMapping({"","/"})
-    public String goCategoryPage(
+    public String goUserPage(
             @RequestParam(value = "username",required = false) String username,
+            @RequestParam(value = "role",required = false) Integer role,
             @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
             @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
             Model model){
-        ServerResponse<PageInfo> page = iUserService.getUserList(username , pageNum , pageSize);
+        ServerResponse<PageInfo> page = iUserService.getUserList(username , role, pageNum , pageSize);
         model.addAttribute("page",page.getData());
         model.addAttribute("username",username);
+        model.addAttribute("role",role);
         return "/admin/manageUser";
     }
-
-    @RequestMapping("/list")
-    @ResponseBody
-    public ServerResponse<PageInfo>/*String*/ goCategoryPageList(
-            @RequestParam(value = "username",required = false) String username,
-            @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-            @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
-            Model model){
-        ServerResponse<PageInfo> page = iUserService.getUserList(username , pageNum , pageSize);
-        model.addAttribute("page",page.getData());
-        model.addAttribute("username",username);
-//        return "/admin/manageUser";
-        return page;
-    }
-
 
 }

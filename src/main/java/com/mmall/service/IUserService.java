@@ -60,5 +60,5 @@ public interface IUserService {
     ServerResponse checkAdminRole(User user);
 
     //获取userlist
-    ServerResponse<PageInfo> getUserList(String username, int pageNum, int pageSize);
+    ServerResponse<PageInfo> getUserList(String username, Integer roleType, int pageNum, int pageSize);
 }

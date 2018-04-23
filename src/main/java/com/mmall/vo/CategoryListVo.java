@@ -2,6 +2,7 @@ package com.mmall.vo;
 
 import com.mmall.pojo.Category;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,24 @@ public class CategoryListVo {
     private Integer parentId;
     private String name;
     private Boolean status;
+    private Date createTime;
+    private Date updateTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     private List<Category> categoryList;
 

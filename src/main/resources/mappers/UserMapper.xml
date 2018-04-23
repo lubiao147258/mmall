@@ -220,6 +220,9 @@
       <if test="username != null">
         and username like #{username}
       </if>
+    <if test="role != null">
+      and role = #{role}
+    </if>
     ORDER BY create_time asc
   </select>
 
