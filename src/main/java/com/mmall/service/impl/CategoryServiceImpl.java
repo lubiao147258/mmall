@@ -1,5 +1,7 @@
 package com.mmall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mmall.common.Const;
@@ -123,6 +125,19 @@ public class CategoryServiceImpl implements ICategoryService {
             categoryListVoList.add(categoryListVo);
         }
         return categoryListVoList;
+    }
+
+    @Override
+    public ServerResponse<PageInfo> selectCategoryByKeys(String categoryName, Integer parentId, Integer status, int pageNum, int pageSize) {
+        if(StringUtils.isNotBlank(categoryName)){
+            categoryName = new StringBuilder().append("%").append(categoryName).append("%").toString();
+        }else{
+            categoryName = new StringBuilder().append("%").append("").append("%").toString();
+        }
+        PageHelper.startPage(pageNum,pageSize);
+        List<Category> categoryList = categoryMapper.selectCategoryChildrenByKeys(categoryName, parentId , status);
+        PageInfo pageInfo = new PageInfo(categoryList);
+        return ServerResponse.createBySuccess(pageInfo);
     }
 
     /**

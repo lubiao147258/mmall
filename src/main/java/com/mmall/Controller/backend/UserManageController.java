@@ -50,7 +50,7 @@ public class UserManageController {
             @RequestParam(value = "username",required = false) String username,
             @RequestParam(value = "role",required = false) Integer role,
             @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-            @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
+            @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
             Model model){
         ServerResponse<PageInfo> page = iUserService.getUserList(username , role, pageNum , pageSize);
         model.addAttribute("page",page.getData());

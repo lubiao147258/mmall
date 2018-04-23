@@ -1,5 +1,6 @@
 package com.mmall.service;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Category;
 import com.mmall.vo.CategoryListVo;
@@ -26,5 +27,7 @@ public interface ICategoryService {
 
     //查询所有一级分类及对应的二级分类
     List<CategoryListVo> getCategoryAndChildrenCategory();
+
+    ServerResponse<PageInfo> selectCategoryByKeys(String categoryName ,Integer parentId,Integer status, int pageNum, int pageSize);
 
 }

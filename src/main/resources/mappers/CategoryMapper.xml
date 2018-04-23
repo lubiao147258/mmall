@@ -123,4 +123,17 @@
     from mmall_category
     where parent_id = #{parentId}
   </select>
+
+  <select id="selectCategoryChildrenByKeys" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_category
+    where parent_id = #{parentId}
+    <if test="categoryName != null">
+      and `name` like #{categoryName}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
+  </select>
 </mapper>

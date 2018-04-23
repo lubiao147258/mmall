@@ -25,17 +25,17 @@
     <script>
         $(document).ready(function() {
             //显示查询条件
-            var typeCondition = $('#roleInput').val();
-            $('#role').val(typeCondition);
+            var typeCondition = $('#statusInput').val();
+            $('#status').val(typeCondition);
 
-            $("#role").change(function(){
+            $("#status").change(function(){
                 $("#searchForm").submit();
             });
 
         });
         function resett(){
-            $("#username").val("");
-            $("#role").val("");
+            $("#categoryName").val("");
+            $("#status").val("");
         }
 
         //时间格式化函数
@@ -117,26 +117,27 @@
             <li class="breadcrumb-item active"><a href="${basePath}/manage/category">分类管理</a></li>
         </ol>
 
-        <%--<div class="container-fluid" >
+        <div class="container-fluid" >
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-content" style="padding-bottom:7px;">
                             <div id="forSearch">
-                                <form action="${basePath}/manage/user" method="post" id="searchForm">
+                                <form action="${basePath}/manage/childCategory" method="post" id="searchForm">
+                                        <input type="hidden" name="preCategoryId" id="hiddenId" value="${preCategoryId}"/>
                                         <input type="hidden" id="pageNum" name="pageNum" value="1">
                                     <ul class="form-inline">
                                         <li class="form-group">
-                                            <label for="name">用户名:</label>
-                                            <input type="text" id="username" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
+                                            <label>类别名称:</label>
+                                            <input type="text" id="categoryName" name="categoryName" class="form-control" value="${categoryName}" placeholder="根据用户名称搜索">
                                         </li>
                                         <li class="form-group">
-                                            <label for="name">角色类型:</label>
-                                            <input type="hidden" value="${role }" id="roleInput">
-                                            <select type="text" id="role" name="role" class="form-control ">
-                                                <option value="">所有用户</option>
-                                                <option value="0">普通用户</option>
-                                                <option value="1">管理员</option>
+                                            <label>状态:</label>
+                                            <input type="hidden" value="${status}" id="statusInput">
+                                            <select type="text" id="status" name="status" class="form-control ">
+                                                <option value="">所有状态</option>
+                                                <option value="1">开启</option>
+                                                <option value="2">关闭</option>
                                             </select>
                                         </li>
                                         <li class="form-group-btn" >
@@ -150,7 +151,7 @@
                     </div>
                 </div>
             </div>
-        </div>--%>
+        </div>
 
         <div class="container-fluid">
             <div class="animated fadeIn">
@@ -178,7 +179,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="categoryListVoList" items="${categoryList}" varStatus="varStatus">
+                                    <c:forEach var="categoryListVoList" items="${page}" varStatus="varStatus">
                                         <tr>
                                             <td>${varStatus.index+1}</td>
                                             <td>${categoryListVoList.name}</td>
