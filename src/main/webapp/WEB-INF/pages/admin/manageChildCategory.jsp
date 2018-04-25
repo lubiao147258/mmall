@@ -38,6 +38,42 @@
             $("#status").val("");
         }
 
+
+        //编辑功能
+        function edit(id){
+            $.ajax({
+                type : 'POST',
+                url : '${basePath}/manage/childCategory/getCategory',
+                data : {
+                    'id' : id
+                },
+                dataType : 'json',
+                success : function(data) {
+                    if (data.status == 0) {
+                        $("#editCategoryName").val(data.data.name);
+                        $("#categoryId").val(data.data.id);
+                       /* $("#editPid").val(data.obj.preCategoryName);
+                        $("#categoryId").val(data.obj.category.id);
+                        $("#editCategoryName").val(data.data.name);
+                        $("#editCateScore").val(data.obj.category.cateScore);
+                        $("#editCategoryDesc").val(data.obj.category.description);
+                        $("#userId").val(data.obj.category.userId);
+                        $("#categoryCreateBy").val(data.obj.user.nickName);
+                        $("#createTime").val(new Date(data.obj.category.createTime).Format("yyyy-MM-dd HH:mm:ss"));
+                        $("#updateTime").val(new Date(data.obj.category.updateTime).Format("yyyy-MM-dd HH:mm:ss"));*/
+                        $("#editModal").modal('show');
+                    } else {
+                        $("#msgBoxInfo").html(data.msg);
+                        $("#msgBox").modal('show');
+                    }
+                },
+                error : function(data) {
+                    $("#msgBoxInfo").html("服务器错误");
+                    $("#msgBox").modal('show');
+                }
+            });
+        }
+
         //时间格式化函数
         Date.prototype.Format = function (fmt) {
             var o = {
@@ -162,7 +198,7 @@
                             <div class="card-header">
                                 <i class="fa fa-code"></i> <a href="${basePath}/manage/category"><b>分类管理 </b></a> / 当前类别：${category.name}
                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                                        data-target="#myModal">添加分类
+                                        data-target="#addModal">添加分类
                                 </button>
                                 <div style="height: 10px;weight:100%;"></div>
                             </div>
@@ -191,7 +227,7 @@
                                             <td><fmt:formatDate value="${categoryListVoList.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td><fmt:formatDate value="${categoryListVoList.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td>
-                                                <button class="badge badge-edit">编辑</button>
+                                                <button class="badge badge-edit" onclick="edit(${categoryListVoList.id})">编辑</button>
                                                 <%--<button class="badge badge-star">删除</button>--%>
                                                 <button class="badge badge-pwd">删除</button>
                                             </td>
@@ -226,6 +262,177 @@
         </div>
     </main>
 </div>
+
+<!-- start 添加model -->
+<div class="up-modal up-fade modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="myModalLabel">添加操作</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="addForm">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">所属分类:</label>
+                            <div class="col-md-9">
+                                <input type="text" disabled="disabled"  class="check-input form-control" value="${category.name}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="hidden" name="parentId" value="${category.id}"/>
+                            <label class="col-md-3 form-control-label">类别名称:</label>
+                            <div class="col-md-9">
+                                <input type="text" id="addCategoryName" name="categoryName" class="check-input form-control" placeholder="类别名称（一级分类名称）">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="add_submit" onclick="addCategory()">确认</button>
+            </div>
+            <script type="text/javascript">
+                function trim(str){//删除左右两端的空格
+                    return str.replace(/(^\s*)|(\s*$)/g, "");
+                }
+                function addCategory(){
+                    if(!checkBlank(trim($("#addCategoryName").val()))){
+                        $("#msgBoxInfo").html("类别名称不允许为空");
+                        $("#addCategoryName").val("");
+                        $("#msgBox").modal('show');
+                        return;
+                    }
+
+                    $.ajax({
+                        type : 'POST',
+                        url : '${basePath}/manage/childCategory/addCategory',
+                        dataType : 'json' ,
+                        data : $("#addForm").serialize(),
+                        success : function(data) {
+                            if (data.status == 0) {
+                                $("#msgBoxConfirm").modal('hide');
+                                $("#msgBoxInfo").html(data.msg);
+                                $("#msgBox").modal('show');
+                                $("#msgBoxOKButton").on('click' , function(){
+                                    parent.window.location.reload();
+                                });
+                            } else {
+                                $("#msgBoxConfirm").modal('hide');
+                                $("#msgBoxInfo").html(data.msg);
+                                $("#msgBox").modal('show');
+                                $("#msgBoxOKButton").on('click' , function(){
+                                    $("#msgBox").modal('hide');
+                                    //parent.window.location.reload();
+                                });
+                            }
+                        },
+                        error : function(data) {
+                            $("#msgBoxInfo").html("程序执行出错");
+                            $("#msgBox").modal('show');
+                            $("#addModal").modal('hide');
+                        }
+                    });
+
+                }
+
+            </script>
+        </div>
+    </div>
+</div>
+<!-- end 添加model-->
+
+<!-- start 编辑model -->
+<div class="up-modal up-fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="myModalLabele">编辑操作</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="editForm">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">所属分类:</label>
+                            <div class="col-md-9">
+                                <input type="text" disabled="disabled"  class="check-input form-control" value="${category.name}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <input type="hidden" id="categoryId" name="id" />
+                            <label class="col-md-3 form-control-label">类别名称:</label>
+                            <div class="col-md-9">
+                                <input type="text" id="editCategoryName" name="categoryName" class="check-input form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">状态:</label>
+                            <div class="col-md-9 wrap">
+                                <label class="radio-inline" style="cursor: pointer;">
+                                    <input type="radio" name="status" id="" value="1" checked> 正常
+                                </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="radio-inline" style="cursor: pointer;">
+                                    <input type="radio" name="status" id=""  value="2"> 已失效
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="edit_submit" onclick="editCategory()">确认</button>
+            </div>
+            <script type="text/javascript">
+                function trim(str){//删除左右两端的空格
+                    return str.replace(/(^\s*)|(\s*$)/g, "");
+                }
+                function editCategory(){
+                    if(!checkBlank(trim($("#editCategoryName").val()))){
+                        $("#msgBoxInfo").html("类别名称不允许为空");
+                        $("#editCategoryName").val("");
+                        $("#msgBox").modal('show');
+                        return;
+                    }
+
+                    $.ajax({
+                        url : '${basePath}/manage/childCategory/setCategoryName',
+                        dataType : 'json' ,
+                        data : $("#editForm").serialize(),
+                        success : function(data) {
+                            if (data.status == 0) {
+                                $("#msgBoxInfo").html(data.msg);
+                                $("#msgBox").modal('show');
+                                $("#addModal").modal('hide');
+                                $(".modal-backdrop").css('display','none');
+                                $("#msgBoxOKButton").on('click' , function(){
+                                    $("#msgBox").modal('hide');
+                                    $("#editModal").modal('hide');
+                                    parent.window.location.reload();
+                                });
+                            } else {
+                                $("#msgBoxInfo").html(data.msg);
+                                $("#msgBox").modal('show');
+                                $("#editModal").modal('hide');
+                                $(".modal-backdrop").css('display','none');
+                            }
+                        },
+                        error : function(data) {
+                            $("#msgBoxInfo").html("服务器内部错误");
+                            $("#msgBox").modal('show');
+                            $("#editModal").modal('hide');
+                        }
+                    });
+
+                }
+            </script>
+        </div>
+    </div>
+</div>
+<!-- end 编辑model-->
 
 <!--    提示框 start -->
 <%@include file="../../common/msgBox.jsp"%>

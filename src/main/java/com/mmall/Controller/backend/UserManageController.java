@@ -61,6 +61,7 @@ public class UserManageController {
 
 
     @RequestMapping("/setOrCancleAdminRole")
+    @ResponseBody
     public ServerResponse setOrCancleAdminRole(Integer userId){
         User user = iUserService.selectUserById(userId);
         return iUserService.setOrCancleAdminRole(user);

@@ -1,8 +1,11 @@
 package com.mmall.Controller.backend;
 
 import com.github.pagehelper.PageInfo;
+import com.mmall.common.Const;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Category;
+import com.mmall.pojo.User;
 import com.mmall.service.ICategoryService;
 import com.mmall.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -41,4 +45,46 @@ public class ChildCategoryManageController {
         model.addAttribute("status",status);
         return "/admin/manageChildCategory";
     }
+
+    /**
+     * 添加分类
+     * @param session
+     * @param categoryName
+     * @param parentId
+     * @return
+     */
+    @RequestMapping("/addCategory")
+    @ResponseBody
+    public ServerResponse addCategory(HttpSession session, String categoryName, int parentId) {
+        return iCategoryService.addCategory(categoryName,parentId);
+    }
+
+    /**
+     * 查询分类
+     * @param session
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getCategory")
+    @ResponseBody
+    public ServerResponse getCategory(HttpSession session , Integer id) {
+        Category category = iCategoryService.getCategoryById(id);
+        ServerResponse serverResponse = ServerResponse.createBySuccess(category);
+        return serverResponse;
+    }
+
+
+    /**
+     * 添加分类
+     * @param session
+     * @param categoryName
+     * @param id
+     * @return
+     */
+    @RequestMapping("/setCategoryName")
+    @ResponseBody
+    public ServerResponse setCategoryName(HttpSession session, String categoryName, int id) {
+        return iCategoryService.updateCategoryName(id,categoryName);
+    }
+
 }

@@ -171,12 +171,17 @@
                                             <td>${userList.question}</td>
                                             <td>
                                                 <c:if test="${userList.role eq 0}">普通用户</c:if>
-                                                <c:if test="${userList.role eq 1}">管理员</c:if>
+                                                <c:if test="${userList.role eq 1}"><font color="red">管理员</font></c:if>
                                             </td>
                                             <td>
-                                                <button class="badge badge-edit">编辑</button>
-                                                <button class="badge badge-star">设为管理员</button>
-                                                <button class="badge badge-pwd">重置密码</button>
+                                                <%--<button class="badge badge-edit">编辑</button>--%>
+                                                <c:if test="${userList.role eq 0}">
+                                                    <button class="badge badge-pwd" onclick="setOrCancleAdminRole(${userList.id})">设为管理员</button>
+                                                </c:if>
+                                                <c:if test="${userList.role eq 1}">
+                                                    <button class="badge badge-pwd" onclick="setOrCancleAdminRole(${userList.id})">取消管理员</button>
+                                                </c:if>
+                                                <%--<button class="badge badge-star">重置密码</button>--%>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -186,6 +191,45 @@
                                     $('.d').html(function(i,oldHTML){
                                         return oldHTML.replace(/${username}/g,'<font color="red">${username}</font>');
                                     })
+                                </script>
+                                <script>
+                                    function setOrCancleAdminRole(id){
+                                        $("#msgBoxConfirmInfo").html("确定要修改角色信息吗？");
+                                        $("#msgBoxConfirm").modal('show');
+                                        $("#msgBoxConfirmButton").on('click' , function(){//点击确认按钮时执行下面的方法
+
+                                            $.ajax({
+                                                type : 'POST',
+                                                url : '${basePath}/manage/user/setOrCancleAdminRole',
+                                                data : {
+                                                    'userId' : id
+                                                },
+                                                dataType : 'json',
+                                                success : function(data) {
+                                                    if (data.status == 0) {
+                                                        $("#msgBoxConfirm").modal('hide');
+                                                        $("#msgBoxInfo").html(data.msg);
+                                                        $("#msgBox").modal('show');
+                                                        $("#msgBoxOKButton").on('click' , function(){
+                                                            parent.window.location.reload();
+                                                        });
+                                                    } else {
+                                                        $("#msgBoxConfirm").modal('hide');
+                                                        $("#msgBoxInfo").html(data.msg);
+                                                        $("#msgBox").modal('show');
+                                                        $("#msgBoxOKButton").on('click' , function(){
+                                                            $("#msgBox").modal('hide');
+                                                            //parent.window.location.reload();
+                                                        });
+                                                    }
+                                                },
+                                                error : function(data) {
+                                                    $("#msgBoxInfo").html("服务器错误");
+                                                    $("#msgBox").modal('show');
+                                                }
+                                            });
+                                        });
+                                    }
                                 </script>
                                 <div class="up-clearfix">
                                     <div class="up-pull-right">
