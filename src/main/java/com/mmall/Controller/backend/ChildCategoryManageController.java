@@ -30,12 +30,15 @@ public class ChildCategoryManageController {
                                       @RequestParam(value = "preCategoryId",required = false)Integer preCategoryId,
                                       @RequestParam(value = "status",required = false)Integer status,
                                       @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                                      @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
-                                      @RequestParam(value = "orderBy",defaultValue = "") String orderBy, Model model){
+                                      @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,Model model){
         System.out.println(preCategoryId);
         ServerResponse<PageInfo> page  = iCategoryService.selectCategoryByKeys(categoryName,preCategoryId,status,pageNum,pageSize);
+        Category category = iCategoryService.getCategoryById(preCategoryId);
+        model.addAttribute("category",category);
         model.addAttribute("page",page.getData());
+        model.addAttribute("categoryName",categoryName);
         model.addAttribute("preCategoryId",preCategoryId);
+        model.addAttribute("status",status);
         return "/admin/manageChildCategory";
     }
 }

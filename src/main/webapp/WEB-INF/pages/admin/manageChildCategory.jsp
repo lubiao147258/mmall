@@ -136,8 +136,8 @@
                                             <input type="hidden" value="${status}" id="statusInput">
                                             <select type="text" id="status" name="status" class="form-control ">
                                                 <option value="">所有状态</option>
-                                                <option value="1">开启</option>
-                                                <option value="2">关闭</option>
+                                                <option value="1">正常</option>
+                                                <option value="0">已失效</option>
                                             </select>
                                         </li>
                                         <li class="form-group-btn" >
@@ -160,13 +160,14 @@
                         <div class="card">
                             <div style="height: 10px;weight:100%;"></div>
                             <div class="card-header">
-                                <i class="fa fa-code"></i> <a href="${basePath}/manage/category"><b>分类管理 </b></a> / 当前分类
+                                <i class="fa fa-code"></i> <a href="${basePath}/manage/category"><b>分类管理 </b></a> / 当前类别：${category.name}
                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                                         data-target="#myModal">添加分类
                                 </button>
                                 <div style="height: 10px;weight:100%;"></div>
                             </div>
                             <div class="card-block">
+                                <c:if test="${!empty page.list}">
                                 <table class="table user-table table-striped">
                                     <thead>
                                     <tr>
@@ -179,25 +180,43 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="categoryListVoList" items="${page}" varStatus="varStatus">
+                                    <c:forEach var="categoryListVoList" items="${page.list}" varStatus="varStatus">
                                         <tr>
-                                            <td>${varStatus.index+1}</td>
-                                            <td>${categoryListVoList.name}</td>
+                                            <td>${varStatus.index+1 + (page.pageNum - 1) * page.pageSize}</td>
+                                            <td class="d">${categoryListVoList.name}</td>
                                             <td>
                                                 <c:if test="${categoryListVoList.status eq true}">正常</c:if>
-                                                <c:if test="${categoryListVoList.status eq false}">已废弃</c:if>
+                                                <c:if test="${categoryListVoList.status eq false}">已失效</c:if>
                                             </td>
                                             <td><fmt:formatDate value="${categoryListVoList.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td><fmt:formatDate value="${categoryListVoList.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td>
                                                 <button class="badge badge-edit">编辑</button>
-                                                <button class="badge badge-star">什么操作</button>
-                                                <button class="badge badge-pwd">查看子类</button>
+                                                <%--<button class="badge badge-star">删除</button>--%>
+                                                <button class="badge badge-pwd">删除</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                </c:if>
+                                <script type="text/javascript">
+                                    $('.d').html(function(i,oldHTML){
+                                        return oldHTML.replace(/${categoryName}/g,'<font color="red">${categoryName}</font>');
+                                    })
+                                </script>
+                                <c:if test="${empty page.list}">
+                                    <div style="width:100%;height:50px;text-align: center;line-height: 50px;">
+                                        <span>还没有子类呢 ( ^ _ ^ )</span>
+                                    </div>
+                                </c:if>
+                                <c:if test="${!empty page.list}">
+                                    <div class="up-clearfix">
+                                        <div class="up-pull-right">
+                                            <%@include file="../../common/page.jsp"%>
+                                        </div>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>

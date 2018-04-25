@@ -117,41 +117,6 @@
             <li class="breadcrumb-item active"><a href="#">分类管理</a></li>
         </ol>
 
-        <%--<div class="container-fluid" >
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card-content" style="padding-bottom:7px;">
-                            <div id="forSearch">
-                                <form action="${basePath}/manage/user" method="post" id="searchForm">
-                                        <input type="hidden" id="pageNum" name="pageNum" value="1">
-                                    <ul class="form-inline">
-                                        <li class="form-group">
-                                            <label for="name">用户名:</label>
-                                            <input type="text" id="username" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
-                                        </li>
-                                        <li class="form-group">
-                                            <label for="name">角色类型:</label>
-                                            <input type="hidden" value="${role }" id="roleInput">
-                                            <select type="text" id="role" name="role" class="form-control ">
-                                                <option value="">所有用户</option>
-                                                <option value="0">普通用户</option>
-                                                <option value="1">管理员</option>
-                                            </select>
-                                        </li>
-                                        <li class="form-group-btn" >
-                                            <button  type="button" class="btn btn-warning" onclick="resett()">重置</button>
-                                            <input type="submit" class="btn btn-primary" value="搜索"/>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>--%>
-
         <div class="container-fluid">
             <div class="animated fadeIn">
                 <div class="row">
@@ -169,7 +134,6 @@
                                     <tr>
                                         <th>序号</th>
                                         <th>类别名称</th>
-                                        <th>状态</th>
                                         <th>创建时间</th>
                                         <th>更新时间</th>
                                         <th style="text-align: center">操作</th>
@@ -180,15 +144,11 @@
                                         <tr>
                                             <td>${varStatus.index+1}</td>
                                             <td>${categoryListVoList.name}</td>
-                                            <td>
-                                                <c:if test="${categoryListVoList.status eq true}">正常</c:if>
-                                                <c:if test="${categoryListVoList.status eq false}">已废弃</c:if>
-                                            </td>
                                             <td><fmt:formatDate value="${categoryListVoList.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td><fmt:formatDate value="${categoryListVoList.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                             <td>
                                                 <button class="badge badge-edit">编辑</button>
-                                                <button class="badge badge-star">什么操作</button>
+                                                <%--<button class="badge badge-star">什么操作</button>--%>
                                                 <a href="#" onclick="showChildCategory(${categoryListVoList.id})"   class="badge badge-pwd">查看子类</a>
                                             </td>
                                         </tr>

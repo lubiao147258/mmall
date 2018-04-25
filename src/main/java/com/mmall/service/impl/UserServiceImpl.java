@@ -194,6 +194,11 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createByErrorMessage("更新个人信息失败");
     }
 
+    @Override
+    public User selectUserById(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
 
     public ServerResponse<User> getInformation(Integer userId){
         User user = userMapper.selectByPrimaryKey(userId);
@@ -229,6 +234,23 @@ public class UserServiceImpl implements IUserService {
         List<User> userList = userMapper.getUserList(StringUtils.isBlank(username)?null:username,role);
         PageInfo pageInfo = new PageInfo(userList);
         return ServerResponse.createBySuccess(pageInfo);
+
+    }
+
+    @Override
+    public ServerResponse<User> setOrCancleAdminRole(User user) {
+        Integer role = user.getRole();
+        if(role == 0){
+            user.setRole(1);
+        }
+        if(role == 1){
+            user.setRole(0);
+        }
+        int updateCount = userMapper.updateByPrimaryKey(user);
+        if(updateCount > 0){
+            return ServerResponse.createBySuccessMessage("修改成功");
+        }
+        return ServerResponse.createByErrorMessage("修改失败");
 
     }
 

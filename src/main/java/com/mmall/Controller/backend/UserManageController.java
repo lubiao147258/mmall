@@ -59,4 +59,11 @@ public class UserManageController {
         return "/admin/manageUser";
     }
 
+
+    @RequestMapping("/setOrCancleAdminRole")
+    public ServerResponse setOrCancleAdminRole(Integer userId){
+        User user = iUserService.selectUserById(userId);
+        return iUserService.setOrCancleAdminRole(user);
+    }
+
 }

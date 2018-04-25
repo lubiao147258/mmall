@@ -140,6 +140,11 @@ public class CategoryServiceImpl implements ICategoryService {
         return ServerResponse.createBySuccess(pageInfo);
     }
 
+    @Override
+    public Category getCategoryById(Integer categoryId) {
+        return categoryMapper.selectByPrimaryKey(categoryId);
+    }
+
     /**
      * 组装CategoryListVo
      * @param category

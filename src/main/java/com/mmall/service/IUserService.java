@@ -53,6 +53,9 @@ public interface IUserService {
     //更新个人信息
     ServerResponse<User> updateInformation(User user);
 
+    //根据id获取用户信息
+    User selectUserById(Integer userId);
+
     //获取用户个人信息
     ServerResponse<User> getInformation(Integer userId);
 
@@ -61,4 +64,7 @@ public interface IUserService {
 
     //获取userlist
     ServerResponse<PageInfo> getUserList(String username, Integer roleType, int pageNum, int pageSize);
+
+    //是否设置为管理员
+    ServerResponse<User> setOrCancleAdminRole(User user);
 }

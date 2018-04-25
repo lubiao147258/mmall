@@ -30,4 +30,6 @@ public interface ICategoryService {
 
     ServerResponse<PageInfo> selectCategoryByKeys(String categoryName ,Integer parentId,Integer status, int pageNum, int pageSize);
 
+    Category getCategoryById(Integer categoryId);
+
 }
