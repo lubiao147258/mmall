@@ -16,6 +16,9 @@ public interface ICategoryService {
     //添加分类
     ServerResponse addCategory(String categoryName, Integer parentId);
 
+    //删除分类
+    ServerResponse delete(Integer id);
+
     //修改分类的名称
     ServerResponse updateCategoryName(Integer categoryId,String categoryName);
 
@@ -31,5 +34,7 @@ public interface ICategoryService {
     ServerResponse<PageInfo> selectCategoryByKeys(String categoryName ,Integer parentId,Integer status, int pageNum, int pageSize);
 
     Category getCategoryById(Integer categoryId);
+
+
 
 }

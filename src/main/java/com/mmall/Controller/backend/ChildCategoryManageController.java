@@ -87,4 +87,17 @@ public class ChildCategoryManageController {
         return iCategoryService.updateCategoryName(id,categoryName);
     }
 
+
+    /**
+     * 删除分类
+     * @param session
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteCategory")
+    @ResponseBody
+    public ServerResponse deleteCategory(HttpSession session, int id) {
+        return iCategoryService.delete(id);
+    }
+
 }

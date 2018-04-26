@@ -38,6 +38,48 @@
             $("#status").val("");
         }
 
+        //删除功能
+        function del(id){
+            $("#msgBoxConfirmInfo").html("确定要删除吗?");
+            $("#msgBoxConfirm").modal('show');
+            $("#msgBoxConfirmButton").on('click' , function(){//点击确认按钮时执行下面的方法
+
+                $.ajax({
+                    type : 'POST',
+                    url : '${basePath}/manage/childCategory/deleteCategory',
+                    data : {
+                        'id' : id
+                    },
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.status == 0) {
+                            $("#msgBoxConfirm").modal('hide');
+                            $("#msgBoxInfo").html(data.msg);
+                            $("#msgBox").modal('show');
+                            $("#msgBoxOKButton").on('click' , function(){
+                                parent.window.location.reload();
+                            });
+                        } else {
+                            $("#msgBoxConfirm").modal('hide');
+                            $("#msgBoxInfo").html(data.msg);
+                            $("#msgBox").modal('show');
+                            $("#msgBoxOKButton").on('click' , function(){
+                                $("#msgBox").modal('hide');
+                                //parent.window.location.reload();
+                            });
+                        }
+                    },
+                    error : function(data) {
+                        $("#msgBoxInfo").html("服务器错误");
+                        $("#msgBox").modal('show');
+                    }
+                });
+
+
+
+            });
+        }
+
 
         //编辑功能
         function edit(id){
@@ -73,6 +115,7 @@
                 }
             });
         }
+
 
         //时间格式化函数
         Date.prototype.Format = function (fmt) {
@@ -229,7 +272,7 @@
                                             <td>
                                                 <button class="badge badge-edit" onclick="edit(${categoryListVoList.id})">编辑</button>
                                                 <%--<button class="badge badge-star">删除</button>--%>
-                                                <button class="badge badge-pwd">删除</button>
+                                                <button class="badge badge-pwd" onclick="del(${categoryListVoList.id})">删除</button>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements ICategoryService {
     /**
      * 添加分类
      * @param categoryName 名称
-     * @param parentId 父id（默认为0）
+     * @param parentId 父id
      * @return
      */
     public ServerResponse addCategory(String categoryName,Integer parentId){
@@ -56,6 +56,18 @@ public class CategoryServiceImpl implements ICategoryService {
             return ServerResponse.createBySuccessMessage("添加品类成功");
         }
         return ServerResponse.createByErrorMessage("添加品类失败");
+    }
+
+    @Override
+    public ServerResponse delete(Integer id) {
+        if(id == null){
+            return ServerResponse.createByErrorMessage("删除品类参数错误");
+        }
+        int rowCount = categoryMapper.deleteByPrimaryKey(id);
+        if(rowCount > 0){
+            return ServerResponse.createBySuccessMessage("删除品类成功");
+        }
+        return ServerResponse.createByErrorMessage("删除品类失败");
     }
 
     /**
