@@ -94,15 +94,6 @@
                     if (data.status == 0) {
                         $("#editCategoryName").val(data.data.name);
                         $("#categoryId").val(data.data.id);
-                       /* $("#editPid").val(data.obj.preCategoryName);
-                        $("#categoryId").val(data.obj.category.id);
-                        $("#editCategoryName").val(data.data.name);
-                        $("#editCateScore").val(data.obj.category.cateScore);
-                        $("#editCategoryDesc").val(data.obj.category.description);
-                        $("#userId").val(data.obj.category.userId);
-                        $("#categoryCreateBy").val(data.obj.user.nickName);
-                        $("#createTime").val(new Date(data.obj.category.createTime).Format("yyyy-MM-dd HH:mm:ss"));
-                        $("#updateTime").val(new Date(data.obj.category.updateTime).Format("yyyy-MM-dd HH:mm:ss"));*/
                         $("#editModal").modal('show');
                     } else {
                         $("#msgBoxInfo").html(data.msg);
