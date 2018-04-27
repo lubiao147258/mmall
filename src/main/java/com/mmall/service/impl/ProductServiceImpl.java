@@ -130,12 +130,17 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public ServerResponse<PageInfo> getProductList(int pageNum,int pageSize){
+    public ServerResponse<PageInfo> getProductList(String productName, Integer status, int pageNum,int pageSize){
         //startPage--start
         //填充自己的sql查询逻辑
         //pageHelper-收尾
+        if(StringUtils.isNotBlank(productName)){
+            productName = new StringBuilder().append("%").append(productName).append("%").toString();
+        }else{
+            productName = new StringBuilder().append("%").append("").append("%").toString();
+        }
         PageHelper.startPage(pageNum,pageSize);
-        List<Product> productList = productMapper.selectList();
+        List<Product> productList = productMapper.selectList(productName, status);
 
         List<ProductListVo> productListVoList = Lists.newArrayList();
         for(Product productItem : productList){
@@ -157,6 +162,7 @@ public class ProductServiceImpl implements IProductService {
         productListVo.setId(product.getId());
         productListVo.setName(product.getName());
         productListVo.setCategoryId(product.getCategoryId());
+        productListVo.setCategory(categoryMapper.selectByPrimaryKey(product.getCategoryId()));
         productListVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix","ftp://image.lubiao.com/"));
         productListVo.setMainImage(product.getMainImage());
         productListVo.setPrice(product.getPrice());

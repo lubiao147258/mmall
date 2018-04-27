@@ -177,10 +177,17 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" resultMap="BaseResultMap" >
+  <select id="selectList" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>
     from mmall_product
+    where 1 = 1
+    <if test="productName != null">
+      and name like #{productName}
+    </if>
+    <if test="status != null">
+      and status = #{status}
+    </if>
     ORDER BY id asc
   </select>
 

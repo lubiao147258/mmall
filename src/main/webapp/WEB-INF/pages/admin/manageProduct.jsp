@@ -25,17 +25,17 @@
     <script>
         $(document).ready(function() {
             //显示查询条件
-            var typeCondition = $('#roleInput').val();
-            $('#role').val(typeCondition);
+            var typeCondition = $('#statusInput').val();
+            $('#status').val(typeCondition);
 
-            $("#role").change(function(){
+            $("#status").change(function(){
                 $("#searchForm").submit();
             });
 
         });
         function resett(){
-            $("#username").val("");
-            $("#role").val("");
+            $("#productName").val("");
+            $("#status").val("");
         }
     </script>
 </head>
@@ -111,16 +111,16 @@
                                         <input type="hidden" id="pageNum" name="pageNum" value="1">
                                     <ul class="form-inline">
                                         <li class="form-group">
-                                            <label>用户名:</label>
-                                            <input type="text" id="username" name="username" class="form-control" value="${username}" placeholder="根据用户名称搜索">
+                                            <label>商品名称:</label>
+                                            <input type="text" id="productName" name="productName" class="form-control" value="${productName}" placeholder="根据商品名称搜索">
                                         </li>
                                         <li class="form-group">
-                                            <label>角色类型:</label>
-                                            <input type="hidden" value="${role }" id="roleInput">
-                                            <select type="text" id="role" name="role" class="form-control ">
-                                                <option value="">所有用户</option>
-                                                <option value="0">普通用户</option>
-                                                <option value="1">管理员</option>
+                                            <label>商品状态:</label>
+                                            <input type="hidden" value="${status }" id="statusInput">
+                                            <select type="text" id="status" name="status" class="form-control ">
+                                                <option value="">所有状态</option>
+                                                <option value="1">在售</option>
+                                                <option value="2">已下架</option>
                                             </select>
                                         </li>
                                         <li class="form-group-btn" >
@@ -148,54 +148,42 @@
                                 </button>--%>
                             </div>
                             <div class="card-block">
+                                <c:if test="${!empty page.list}">
                                 <table class="table user-table table-striped">
                                     <thead>
                                     <tr>
                                         <th>序号</th>
                                         <th>名称</th>
-                                        <th>类别</th>
+                                        <th width="150px">类别</th>
                                         <th>价格</th>
                                         <th>状态</th>
                                         <th style="text-align: center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>电脑rtrewtewrtertewrt</td>
-                                            <td>电脑</td>
-                                            <td>8999</td>
-                                            <td>在售</td>
-                                            <td>删除</td>
-                                        </tr>
-                                    <c:forEach var="userList" items="${page.list}" varStatus="varStatus">
+                                    <c:forEach var="productList" items="${page.list}" varStatus="varStatus">
                                         <tr>
                                             <td>${varStatus.index+1 + (page.pageNum - 1) * page.pageSize}</td>
-                                            <td class="d">${userList.username}</td>
-                                            <td>${userList.email}</td>
-                                            <td>${userList.phone}</td>
-                                            <td>${userList.question}</td>
+                                            <td class="d">${productList.name}</td>
+                                            <td>${productList.category.name}</td>
+                                            <td>${productList.price}</td>
                                             <td>
-                                                <c:if test="${userList.role eq 0}">普通用户</c:if>
-                                                <c:if test="${userList.role eq 1}"><font color="red">管理员</font></c:if>
+                                                <c:if test="${productList.status eq 1}">在售</c:if>
+                                                <c:if test="${productList.status eq 2}">已下架</c:if>
                                             </td>
                                             <td>
-                                                <%--<button class="badge badge-edit">编辑</button>--%>
-                                                <c:if test="${userList.role eq 0}">
-                                                    <button class="badge badge-pwd" onclick="setOrCancleAdminRole(${userList.id})">设为管理员</button>
-                                                </c:if>
-                                                <c:if test="${userList.role eq 1}">
-                                                    <button class="badge badge-pwd" onclick="setOrCancleAdminRole(${userList.id})">取消管理员</button>
-                                                </c:if>
-                                                <%--<button class="badge badge-star">重置密码</button>--%>
+                                                <button class="badge badge-edit">编辑</button>
+                                                <button class="badge badge-pwd" >删除</button>
+                                                <button class="badge badge-star">查看详情</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                </c:if>
                                 <script type="text/javascript">
                                     $('.d').html(function(i,oldHTML){
-                                        return oldHTML.replace(/${username}/g,'<font color="red">${username}</font>');
+                                        return oldHTML.replace(/${productName}/g,'<font color="red">${productName}</font>');
                                     })
                                 </script>
                                 <script>
@@ -237,11 +225,18 @@
                                         });
                                     }
                                 </script>
-                                <div class="up-clearfix">
-                                    <div class="up-pull-right">
-                                        <%@include file="../../common/page.jsp"%>
+                                <c:if test="${empty page.list}">
+                                    <div style="width:100%;height:50px;text-align: center;line-height: 50px;">
+                                        <span>没有数据 ( ^ _ ^ )</span>
                                     </div>
-                                </div>
+                                </c:if>
+                                <c:if test="${!empty page.list}">
+                                    <div class="up-clearfix">
+                                        <div class="up-pull-right">
+                                            <%@include file="../../common/page.jsp"%>
+                                        </div>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>

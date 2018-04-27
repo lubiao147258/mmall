@@ -82,7 +82,7 @@
                     <a class="nav-link" href="${basePath}/manage/category"><i class="icon-pie-chart"></i> 分类管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-notebook"></i> 商品管理</a>
+                    <a class="nav-link" href="${basePath}/manage/product"><i class="icon-notebook"></i> 商品管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-wrench"></i> 个人中心</a>

@@ -1,5 +1,7 @@
 package com.mmall.vo;
 
+import com.mmall.pojo.Category;
+
 import java.math.BigDecimal;
 
 /**
@@ -10,6 +12,7 @@ public class ProductListVo {
 
     private Integer id;
     private Integer categoryId;
+    private Category category;
 
     private String name;
     private String subtitle;
@@ -82,5 +85,13 @@ public class ProductListVo {
 
     public void setImageHost(String imageHost) {
         this.imageHost = imageHost;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
