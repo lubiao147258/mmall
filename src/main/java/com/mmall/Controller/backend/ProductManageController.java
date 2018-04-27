@@ -7,10 +7,12 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import com.mmall.pojo.User;
+import com.mmall.service.ICategoryService;
 import com.mmall.service.IFileService;
 import com.mmall.service.IProductService;
 import com.mmall.service.IUserService;
 import com.mmall.utils.PropertiesUtil;
+import com.mmall.vo.CategoryListVo;
 import com.mmall.vo.ProductListVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,6 +46,9 @@ public class ProductManageController {
 
     @Autowired
     private IFileService iFileService;
+
+    @Autowired
+    private ICategoryService iCategoryService;
 
 
     @RequestMapping({"","/"})
@@ -238,5 +244,14 @@ public class ProductManageController {
             resultMap.put("msg", "无权限操作");
             return resultMap;
         }
+    }
+
+
+    @RequestMapping("/addProduct")
+    public String toAddProductPage(Model model){
+
+        List<CategoryListVo> categoryListVoList = this.iCategoryService.getCategoryAndChildrenCategory();
+        model.addAttribute("categoryListVoList", categoryListVoList);
+        return "/admin/manageAddProduct";
     }
 }

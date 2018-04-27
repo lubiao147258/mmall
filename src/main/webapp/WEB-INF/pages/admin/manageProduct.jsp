@@ -144,9 +144,7 @@
                             <div style="height: 10px;weight:100%;"></div>
                             <div class="card-header">
                                 <i class="fa fa-code"></i> 商品管理
-                                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                                        data-target="#addModal">添加商品
-                                </button>
+                                <a href="${basePath}/manage/product/addProduct"><button type="button" class="btn btn-primary float-right" >添加商品</button></a>
                                 <div style="height: 10px;weight:100%;"></div>
                             </div>
                             <div class="card-block">
