@@ -85,7 +85,7 @@
                     <a class="nav-link active" href="#"><i class="icon-notebook"></i> 商品管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-wrench"></i> 个人中心</a>
+                    <a class="nav-link" href="#"><i class="icon-settings"></i> 个人中心</a>
                 </li>
             </ul>
         </nav>
@@ -98,7 +98,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
             <li class="breadcrumb-item">Admin</li>
-            <li class="breadcrumb-item active"><a href="#">商品管理</a></li>
+            <li class="breadcrumb-item active">商品管理</li>
         </ol>
 
         <div class="container-fluid" >
@@ -141,11 +141,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            <div style="height: 10px;weight:100%;"></div>
                             <div class="card-header">
                                 <i class="fa fa-code"></i> 商品管理
-                                <%--<button type="button" class="btn btn-success float-right" data-toggle="modal"
-                                        data-target="#myModal">添加用户
-                                </button>--%>
+                                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                                        data-target="#addModal">添加商品
+                                </button>
+                                <div style="height: 10px;weight:100%;"></div>
                             </div>
                             <div class="card-block">
                                 <c:if test="${!empty page.list}">
@@ -166,14 +168,19 @@
                                             <td>${varStatus.index+1 + (page.pageNum - 1) * page.pageSize}</td>
                                             <td class="d">${productList.name}</td>
                                             <td>${productList.category.name}</td>
-                                            <td>${productList.price}</td>
+                                            <td><font color="#ff6609">&yen;${productList.price}</font></td>
                                             <td>
                                                 <c:if test="${productList.status eq 1}">在售</c:if>
                                                 <c:if test="${productList.status eq 2}">已下架</c:if>
                                             </td>
                                             <td>
-                                                <button class="badge badge-edit">编辑</button>
-                                                <button class="badge badge-pwd" >删除</button>
+                                                <%--<button class="badge badge-edit"></button>--%>
+                                                    <c:if test="${productList.status eq 2}">
+                                                        <button class="badge badge-edit" onclick="onSaleorNot(${productList.id} , 1)">上架</button>
+                                                    </c:if>
+                                                    <c:if test="${productList.status eq 1}">
+                                                        <button class="badge badge-pwd" onclick="onSaleorNot(${productList.id} , 2)">下架</button>
+                                                    </c:if>
                                                 <button class="badge badge-star">查看详情</button>
                                             </td>
                                         </tr>
@@ -187,16 +194,17 @@
                                     })
                                 </script>
                                 <script>
-                                    function setOrCancleAdminRole(id){
-                                        $("#msgBoxConfirmInfo").html("确定要修改角色信息吗？");
+                                    function onSaleorNot(id , status){
+                                        $("#msgBoxConfirmInfo").html("确定要修改信息吗？");
                                         $("#msgBoxConfirm").modal('show');
                                         $("#msgBoxConfirmButton").on('click' , function(){//点击确认按钮时执行下面的方法
 
                                             $.ajax({
                                                 type : 'POST',
-                                                url : '${basePath}/manage/user/setOrCancleAdminRole',
+                                                url : '${basePath}/manage/product/set_sale_status.do',
                                                 data : {
-                                                    'userId' : id
+                                                    'productId' : id,
+                                                    "status" : status
                                                 },
                                                 dataType : 'json',
                                                 success : function(data) {
