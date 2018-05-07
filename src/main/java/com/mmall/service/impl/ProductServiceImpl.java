@@ -54,15 +54,15 @@ public class ProductServiceImpl implements IProductService {
             if (product.getId() != null) {
                 int rowCount = productMapper.updateByPrimaryKey(product);
                 if (rowCount > 0) {
-                    return ServerResponse.createBySuccess("更新产品成功");
+                    return ServerResponse.createBySuccessMessage("更新产品成功");
                 }
-                return ServerResponse.createBySuccess("更新产品失败");
+                return ServerResponse.createBySuccessMessage("更新产品失败");
             } else {
                 int rowCount = productMapper.insert(product);
                 if (rowCount > 0) {
-                    return ServerResponse.createBySuccess("新增产品成功");
+                    return ServerResponse.createBySuccessMessage("新增产品成功");
                 }
-                return ServerResponse.createBySuccess("新增产品失败");
+                return ServerResponse.createBySuccessMessage("新增产品失败");
             }
         }
         return ServerResponse.createByErrorMessage("新增或更新产品参数不正确");

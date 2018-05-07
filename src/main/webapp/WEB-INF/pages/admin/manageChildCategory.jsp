@@ -329,10 +329,10 @@
                 <button type="button" class="btn btn-primary" id="add_submit" onclick="addCategory()">确认</button>
             </div>
             <script type="text/javascript">
-                function trim(str){//删除左右两端的空格
+
+                function addCategory(){function trim(str){//删除左右两端的空格
                     return str.replace(/(^\s*)|(\s*$)/g, "");
                 }
-                function addCategory(){
                     if(!checkBlank(trim($("#addCategoryName").val()))){
                         $("#msgBoxInfo").html("类别名称不允许为空");
                         $("#addCategoryName").val("");

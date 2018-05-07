@@ -165,7 +165,10 @@
                                     <c:forEach var="userList" items="${page.list}" varStatus="varStatus">
                                         <tr>
                                             <td>${varStatus.index+1 + (page.pageNum - 1) * page.pageSize}</td>
-                                            <td class="d">${userList.username}</td>
+                                            <td class="d">
+                                                <c:if test="${userList.role eq 0}">${userList.username}</c:if>
+                                                <c:if test="${userList.role eq 1}"><font color="#00bfff">${userList.username}</font></c:if>
+                                            </td>
                                             <td>${userList.email}</td>
                                             <td>${userList.phone}</td>
                                             <td>${userList.question}</td>

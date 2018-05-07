@@ -14,6 +14,7 @@
     <link href="${basePath}/resources/css/style.css" rel="stylesheet">
     <link href="${basePath}/resources/css/font-awesome.min.css" rel="stylesheet">
     <link href="${basePath}/resources/css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="${basePath}/resources/layui/css/layui.css">
     <script src="${basePath}/resources/js/libs/jquery-2.1.4.min.js"></script>
     <script src="${basePath}/resources/js/libs/bootstrap.min.js"></script>
     <script src="${basePath}/resources/js/require.js"></script>
@@ -21,9 +22,10 @@
     <!- -[if lt IE]>
     <script src="${basePath}/resources/js/libs/respond.min.js"></script>
     <script src="${basePath}/resources/js/libs/html5shiv.min.js"></script>
+
     <![endif]- ->
     <script>
-
+        window.subImagesFlag = false;
     </script>
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
@@ -32,7 +34,8 @@
     <a class="navbar-brand" href="#"></a>--%>
     <ul class="nav navbar-nav hidden-md-down">
         <li class="nav-item">
-            <span class=" navbar-toggler" style="margin-left:30px;color: #FFF;line-height: 2;font-size: 16px;font-weight: bold;">后台管理</span>
+            <span class=" navbar-toggler"
+                  style="margin-left:30px;color: #FFF;line-height: 2;font-size: 16px;font-weight: bold;">后台管理</span>
         </li>
         <li class="nav-item">
             <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
@@ -99,9 +102,9 @@
                                 <div class="card-content-top-right">
                                     <!-- <button class="btn btn-primary">提交</button> -->
                                 </div>
-                            </div><hr style="margin-top: 0;"/>
+                            </div>
+                            <hr style="margin-top: 0;"/>
                             <div class="card-content-main">
-                                <form class="up-form-inline" id="searchForm">
                                     <div class="form-group row">
                                         <label class="col-md-1 form-control-label"> 商品分类:</label>
                                         <div class="col-md-3">
@@ -118,27 +121,27 @@
                                             </select>
                                         </div>
                                         <script>
-                                            $("#parCategory").change(function(){
+                                            $("#parCategory").change(function () {
 
                                                 var parentId = $(this).val();
 
                                                 $.ajax({
-                                                    type : 'POST',
-                                                    url : '${basePath}/manage/category/get_category.do',
-                                                    data : {
-                                                        "categoryId" : parentId
+                                                    type: 'POST',
+                                                    url: '${basePath}/manage/category/get_category.do',
+                                                    data: {
+                                                        "categoryId": parentId
                                                     },
-                                                    dataType : 'json',
+                                                    dataType: 'json',
 
-                                                    success : function(data) {
+                                                    success: function (data) {
                                                         $("#childCategory").html("");
                                                         $("#childCategory").html("<option value='-1'>请选择</option>");
                                                         //alert(data.data[0].id);
-                                                        for(var i =0 ; i < data.data.length ; i++ ){
-                                                            $("#childCategory").html($("#childCategory").html() + "<option value='"+ data.data[i].id+"'>"+data.data[i].name+"</option>");
+                                                        for (var i = 0; i < data.data.length; i++) {
+                                                            $("#childCategory").html($("#childCategory").html() + "<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>");
                                                         }
                                                     },
-                                                    error : function(data) {
+                                                    error: function (data) {
                                                         $("#msgBoxInfo").html("服务器错误");
                                                         $("#msgBox").modal('show');
                                                     }
@@ -149,41 +152,258 @@
                                     <div class="form-group row">
                                         <label class="col-md-1 form-control-label"> 商品名称:</label>
                                         <div class="col-md-11">
-                                            <textarea rows="5" type="text" id="" name="noticeTitle" class="check-input form-control" placeholder="商品名称" value=""></textarea>
+                                            <textarea rows="5" type="text" id="productName" name="productName"
+                                                      class="check-input form-control" placeholder="商品名称"
+                                                      value=""></textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-md-1 form-control-label"> 副标题:</label>
+                                        <label class="col-md-1 form-control-label"> 商品描述:</label>
                                         <div class="col-md-11">
-                                            <textarea rows="5" type="text" id="" name="noticeTitle" class="check-input form-control" placeholder="商品副标题" value=""></textarea>
+                                            <textarea rows="5" type="text" id="subtitle" name="subtitle"
+                                                      class="check-input form-control" placeholder="商品描述"
+                                                      value=""></textarea>
                                         </div>
                                     </div>
-                                </form>
-
-                                <div class="form-group row">
-                                    <label class="col-md-2 form-control-label"> 公告内容:</label>
-                                    <div class="col-md-10">
-                                        springmvc上传文件
-                                        <form name="form1" action="/mmall/manage/product/upload.do" method="post" enctype="multipart/form-data">
-                                            <input type="file" name="upload_file" />
-                                            <input type="submit" value="springmvc上传文件" />
-                                        </form>
-
-
-                                        富文本图片上传文件
-                                        <form name="form2" action="/mmall/manage/product/richtext_img_upload.do" method="post" enctype="multipart/form-data">
-                                            <input type="file" name="upload_file" />
-                                            <input type="submit" value="富文本图片上传文件" />
-                                        </form>
+                                    <div class="form-group row">
+                                        <label class="col-md-1 form-control-label"> 价格:</label>
+                                        <div class="col-md-2">
+                                            <input type="number" id="price" name="price" class="check-input form-control"
+                                                   placeholder="商品价格" value=""/>
+                                        </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-1 form-control-label"> 库存:</label>
+                                        <div class="col-md-2">
+                                            <input type="number" id="stock" name="stock" class="check-input form-control"
+                                                   placeholder="商品库存" value=""/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-1 form-control-label"> 商品图片:</label>
+                                        <div class="col-md-11">
+                                            <div class="layui-upload">
+                                                <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多张图片</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                                                <div class="layui-upload-list">
+                                                    <table class="layui-table">
+                                                        <thead>
+                                                        <tr><th>文件名</th>
+                                                            <th>大小</th>
+                                                            <th>状态</th>
+                                                            <th>操作</th>
+                                                        </tr></thead>
+                                                        <tbody id="demoList"></tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="form-group row">
+                                    <label class="col-md-1 form-control-label"> 商品详情:</label>
+                                    <div class="col-md-11">
+                                        <textarea class="layui-textarea" id="LAY_demo"
+                                                  style="display: none"></textarea>
+                                    </div>
+
+                                    <script src="${basePath}/resources/layui/layui.js" charset="utf-8"></script>
+                                    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+                                    <script>
+                                        layui.use(['layedit','upload'], function () {
+                                            var layedit = layui.layedit
+                                                ,upload = layui.upload
+                                                , $ = layui.jquery;
+
+                                            //多文件列表示例
+                                            var demoListView = $('#demoList')
+                                                ,uploadListIns = upload.render({
+                                                elem: '#testList'
+                                                ,url: '${basePath}/manage/product/richtext_img_upload.do'
+                                                ,accept: 'file'
+                                                ,multiple: true
+                                                ,auto: false
+                                                ,bindAction: '#testListAction'
+                                                ,choose: function(obj){
+                                                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                                                    //读取本地文件
+                                                    obj.preview(function(index, file, result){
+                                                                var tr = $(['<tr id="upload-'+ index +'">'
+                                                                    ,'<td>'+ '<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" filename="">' +'</td>'
+                                                                    ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                                                                    ,'<td>等待上传</td>'
+                                                                    ,'<td>'
+                                                                    ,'<button class="layui-btn layui-btn-mini demo-reload layui-hide">重传</button>'
+                                                                    ,'<button class="layui-btn layui-btn-mini layui-btn-danger demo-delete">删除</button>'
+                                                                    ,'</td>'
+                                                                    ,'</tr>'].join(''));
+
+                                                        //单个重传
+                                                        tr.find('.demo-reload').on('click', function(){
+                                                            obj.upload(index, file);
+                                                        });
+
+                                                        //删除
+                                                        tr.find('.demo-delete').on('click', function(){
+                                                            delete files[index]; //删除对应的文件
+                                                            tr.remove();
+                                                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                                                        });
+
+                                                        demoListView.append(tr);
+                                                    });
+                                                }
+                                                ,done: function(res, index, upload){
+                                                    if(res.code == 0){ //上传成功
+                                                        subImagesFlag = true;
+                                                        //console.log(res.data);
+                                                        var tr = demoListView.find('tr#upload-'+ index)
+                                                            ,tds = tr.children();
+                                                        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                                                        //tds.eq(3).html(''); //清空操作
+                                                        tds.eq(0).find('.layui-upload-img').attr('src',res.data.src);
+                                                        tds.eq(0).find('.layui-upload-img').attr('filename',res.data.fileName);
+                                                        //tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                                                        return delete this.files[index]; //删除文件队列已经上传成功的文件
+                                                    }
+                                                    this.error(index, upload);
+                                                }
+                                                ,error: function(index, upload){
+                                                    subImagesFlag = false;
+                                                    var tr = demoListView.find('tr#upload-'+ index)
+                                                        ,tds = tr.children();
+                                                    tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                                                    tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                                                }
+                                            });
+
+                                            layedit.set({
+                                                uploadImage: {
+                                                    url: '${basePath}/manage/product/richtext_img_upload.do' //接口url
+                                                    , type: 'post'
+                                                }
+                                            });
+
+                                            //构建一个默认的编辑器
+                                            var index = layedit.build('LAY_demo');
+                                        });
+                                    </script>
                                 </div>
                                 <ul class="form-inline">
-                                    <li class="form-group-btn" >
-                                        <button  type="button" class="btn btn-warning" onclick="reset()">重置</button>
-                                        <button  type="button" class="btn btn-primary" onclick="addNotice()" id="addNoticeBtn">提交</button>
+                                    <li class="form-group-btn">
+                                        <button type="button" class="btn btn-warning" onclick="reset()">重置</button>
+                                        <button type="button" class="btn btn-primary" onclick="addProduct()"
+                                                id="addNoticeBtn">提交
+                                        </button>
                                     </li>
                                 </ul>
+                                <script>
+
+                                    function trim(str){//删除左右两端的空格
+                                        return str.replace(/(^\s*)|(\s*$)/g, "");
+                                    }
+
+                                    function addProduct(){
+                                        var categoryId = $("#childCategory").val();
+                                        var name = $("#productName").val();
+                                        var subtitle = $("#subtitle").val();
+                                        var price = $("#price").val();
+                                        var stock = $("#stock").val();
+                                        var detail = $("iframe").contents().find("body").html();
+                                        var imgs = $("#demoList").find('img');
+                                        var subImages = '';
+                                        for(var i =0 ; i< imgs.length ; i++){
+                                            subImages+=$(imgs[i]).attr('filename') + ',';
+                                        }
+                                        //alert(subImagesFlag);
+                                        if(categoryId == -1){
+                                            $("#msgBoxInfo").html("请选择商品类别");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!checkBlank(trim(name))){
+                                            $("#msgBoxInfo").html("商品名称不允许为空");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!checkBlank(trim(subtitle))){
+                                            $("#msgBoxInfo").html("商品描述不允许为空");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!checkBlank(trim(price))){
+                                            $("#msgBoxInfo").html("商品价格不允许为空");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!checkBlank(trim(stock))){
+                                            $("#msgBoxInfo").html("商品库存不允许为空");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!subImagesFlag){
+                                            $("#msgBoxInfo").html("商品图片未添加或者没有上传成功");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        if(!checkBlank(detail)){
+                                            $("#msgBoxInfo").html("商品详情未添加");
+                                            $("#msgBox").modal('show');
+                                            return;
+                                        }
+                                        /*alert("categoryId:"+categoryId);
+                                        alert("name:"+name);
+                                        alert("subtitle:"+subtitle);
+                                        alert("price:"+price);
+                                        alert("stock:"+stock);
+                                        alert("subImages:"+subImages);
+                                        alert("detail:"+detail);*/
+
+                                        $.ajax({
+                                            type : 'POST',
+                                            url : '${basePath}/manage/product/doAddProduct',
+                                            dataType : 'json' ,
+                                            data : {
+                                                'categoryId' : categoryId,
+                                                'name' : name,
+                                                'subtitle' : subtitle,
+                                                'price' : price,
+                                                'stock' : stock,
+                                                'subImages' : subImages,
+                                                'detail' : detail,
+
+                                            },
+                                            success : function(data) {
+                                                if (data.status == 0) {
+                                                    $("#msgBoxConfirm").modal('hide');
+                                                    $("#msgBoxInfo").html(data.msg);
+                                                    $("#msgBox").modal('show');
+                                                    $("#msgBoxOKButton").on('click' , function(){
+                                                        parent.window.location.reload();
+                                                    });
+                                                } else {
+                                                    $("#msgBoxConfirm").modal('hide');
+                                                    $("#msgBoxInfo").html(data.msg);
+                                                    $("#msgBox").modal('show');
+                                                    $("#msgBoxOKButton").on('click' , function(){
+                                                        $("#msgBox").modal('hide');
+                                                        //parent.window.location.reload();
+                                                    });
+                                                }
+                                            },
+                                            error : function(data) {
+                                                $("#msgBoxInfo").html("程序执行出错");
+                                                $("#msgBox").modal('show');
+                                                $("#addModal").modal('hide');
+                                            }
+                                        });
+
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -194,11 +414,10 @@
 </div>
 
 
-
 <!--    提示框 start -->
-<%@include file="../../common/msgBox.jsp"%>
+<%@include file="../../common/msgBox.jsp" %>
 <!--    提示框 -->
 <script src="${basePath}/resources/js/index.js"></script>
-<script src="${basePath}/resources/js/formgroup.js"></script>
+<%--<script src="${basePath}/resources/js/formgroup.js"></script>--%>
 </body>
 </html>

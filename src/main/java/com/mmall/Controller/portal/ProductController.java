@@ -2,8 +2,11 @@ package com.mmall.Controller.portal;
 
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
+import com.mmall.pojo.Category;
 import com.mmall.pojo.Product;
+import com.mmall.service.ICategoryService;
 import com.mmall.service.IProductService;
+import com.mmall.vo.CategoryListVo;
 import com.mmall.vo.ProductDetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,9 @@ public class ProductController {
 
     @Autowired
     private IProductService iProductService;
+
+    @Autowired
+    private ICategoryService iCategoryService;
 
     @RequestMapping("detail.do")
     @ResponseBody
@@ -49,8 +55,21 @@ public class ProductController {
                                     @RequestParam(value = "orderBy",defaultValue = "") String orderBy, Model model){
 
         ServerResponse<PageInfo> productList = iProductService.getProductByKeywordCategory(keyword,categoryId,pageNum,pageSize,orderBy);
-        System.out.println(productList.getData().getList().size());
         model.addAttribute("productList" , productList.getData());
+
+        //所有分类
+        List<CategoryListVo> categoryListVoList = this.iCategoryService.getCategoryAndChildrenCategory();
+        model.addAttribute("categoryListVoList", categoryListVoList);
+
+        //当前分类
+        Category category = iCategoryService.getCategoryById(categoryId);
+        model.addAttribute("category", category);
+
+        //当前分类下的子分类
+        List<Category> categoryList = this.iCategoryService.getChildrenParallelCategory(categoryId).getData();
+        model.addAttribute("categoryList", categoryList);
+
         return "/product";
     }
+
 }
