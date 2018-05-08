@@ -3,225 +3,17 @@
 <html>
 <head>
     <title>${category.name}——mmall商城</title>
-    <link rel="shortcut icon" href="http://www.vmall.com/favicon.ico"/>
+    <link rel="shortcut icon" href="${basePath}/resources/images/favicon_logo.ico">
     <link href="http://res8.vmallres.com/20180323/css/echannel/ec.core.base.min.css?20170722" rel="stylesheet"
           type="text/css">
     <link href="http://res8.vmallres.com/20180323/css/echannel/index.min.css?20170320" rel="stylesheet"
           type="text/css">
     <link href="http://res8.vmallres.com/20180323/css/echannel/main.min.css?20170106" rel="stylesheet" type="text/css">
     <script src="http://res9.vmallres.com/20180323/js/common/base/jquery-1.4.4.min.js"></script>
-    <%--<script src="http://res9.vmallres.com/20180323/js/common/jsapi.js?20141025" namespace="ec"></script>
-    <script src="http://res9.vmallres.com/20180323/js/common/ec.core.js?20141025"></script>
-    <script src="http://res9.vmallres.com/20180323/js/echannel/ec.business.min.js?20171028"></script>
-    <script src="http://res9.vmallres.com/20180323/js/echannel/base.min.js?20171028"></script>
-    <script src="http://res9.vmallres.com/20180323/js/echannel/slider.min.js?20170426"></script>
-    <script src="http://res9.vmallres.com/20180323/js/echannel/swiper.min.js?20170426"></script>--%>
-    <!--[if lt IE 9]>
-    <!--<script src="http://res9.vmallres.com/20180323/js/common/html5shiv.js"></script>--> <![endif]-->
 
-    <script>
-
-    </script>
 </head>
 <body class="wide">
-<style type="text/css">
-    .btn-line-primary i,
-    .category .category-info i,
-    .footer-warrant-area .footer-warrant-logo span,
-    .goods-rolling .grid-btn span,
-    .home-channel-list li.s3 .icon-notice span,
-    .hungBar-feedback i,
-    .hungBar-feedback:after,
-    .hungBar-for-help i,
-    .hungBar-for-help:after,
-    .hungBar-olcs-web i,
-    .hungBar-olcs-web:after,
-    .hungBar-top i,
-    .i-mall-huaban .p-img span,
-    .i-mall-prompt .user-info .user-info-detail a:before,
-    .minicart-pro-item .p-choose i,
-    .minicart-pro-item .p-tags:before,
-    .search-bar .search-bar-form .button,
-    .shortcut .s-dropdown .icon-minicart:before,
-    .slogan li i {
-        background: url(http://res.vmallres.com/20180323/images/echannel/icon-common.png)
-    }
-
-    .search-bar .search-bar-form .button {
-        background-position: 0 -25px
-    }
-
-    .minicart-pro-item .p-tags:before {
-        background-position: -28px -99px
-    }
-
-    .goods-rolling .grid-btn.btn-prev span {
-        background-position: -101px -1px
-    }
-
-    .goods-rolling .grid-btn.btn-next span {
-        background-position: -112px -1px
-    }
-
-    .hungBar-top i {
-        background-position: -123px -1px
-    }
-
-    .hungBar-feedback i {
-        background-position: -151px -1px
-    }
-
-    .hungBar-for-help i {
-        background-position: -166px -1px
-    }
-
-    .hungBar-olcs-web i {
-        background-position: -136px -1px
-    }
-
-    .btn-line-primary i {
-        background-position: -101px -23px
-    }
-
-    .slogan .s1 i {
-        background-position: 0 -151px
-    }
-
-    .slogan .s2 i {
-        background-position: -94px -151px
-    }
-
-    .slogan .s3 i {
-        background-position: -141px -151px
-    }
-
-    .slogan .s4 i {
-        background-position: -47px -151px
-    }
-
-    .hungBar-for-help:after {
-        background-position: -80px -199px
-    }
-
-    .hungBar-feedback:after {
-        background-position: -40px -199px
-    }
-
-    .hungBar-olcs-web:after {
-        background-position: 0 -199px
-    }
-
-    .category .category-info i {
-        background-position: -9px -214px
-    }
-
-    .category-index .category-list li.active i,
-    .category-index .category-list li.active i {
-        background-position: -2px -214px
-    }
-
-    .i-mall-huaban .p-img span {
-        width: 50px;
-        height: 50px;
-        display: block
-    }
-
-    .i-mall-huaban .p-img span.img01 {
-        background-position: -50px 0
-    }
-
-    .i-mall-huaban .p-img span.img02 {
-        background-position: -50px -50px
-    }
-
-    .i-mall-huaban .p-img span.img03 {
-        background-position: -50px -100px
-    }
-
-    .footer-warrant-area .footer-warrant-logo span {
-        width: 79px;
-        height: 16px;
-        display: block;
-        background-position: -101px -45px
-    }
-
-    .home-channel-list li.s3 .icon-notice span {
-        width: 31px;
-        height: 13px;
-        display: block;
-        position: relative;
-        top: 17px;
-        margin: 0 auto;
-        background-position: -17px -214px
-    }
-
-    .home-channel-list li.s2 li .p-img {
-        height: 40px;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        width: 40px
-    }
-
-    .home-channel-list li.s2 li .p-img img {
-        position: absolute;
-        width: auto;
-        height: auto
-    }
-
-    .home-channel-list li.s2 li .p-img .img0 {
-        left: 0
-    }
-
-    .home-channel-list li.s2 li .p-img .img1 {
-        left: -40px
-    }
-
-    .home-channel-list li.s2 li .p-img .img2 {
-        left: -80px
-    }
-
-    .home-channel-list li.s2 li .p-img .img3 {
-        left: -120px
-    }
-
-    .home-channel-list li.s2 li .p-img .img4 {
-        left: -160px
-    }
-
-    .home-channel-list li.s2 li .p-img .img5 {
-        left: -200px
-    }
-
-    .home-channel-list li.s3 .p-info li a span {
-        display: inline-block;
-        height: 20px;
-        margin-right: 6px;
-        overflow: hidden;
-        position: relative;
-        top: 6px;
-        width: 20px
-    }
-
-    .home-channel-list li.s3 .p-info li a img {
-        width: auto;
-        height: auto;
-        margin: 0;
-        position: absolute
-    }
-
-    .home-channel-list li.s3 .p-info li a .img0 {
-        left: -240px
-    }
-
-    .home-channel-list li.s3 .p-info li a .img1 {
-        left: -260px
-    }
-
-    .home-channel-list li.s3 .p-info li a .img2 {
-        left: -280px
-    }
-</style>
+<link href="${basePath}/resources/css/mmall.css" rel="stylesheet" type="text/css">
 <div class="top-banner" id="top-banner-block"></div>
 <img src="http://res.vmallres.com/20180323/images/echannel/icon-common.png" class="hide">
 
@@ -337,9 +129,7 @@
                     </ul>
                 </div>
 
-                <!-- 二级虚拟分类 -->
                 <div class="p-values">
-                    <!-- 一行的高度为30px,显示n行，p-expand的高度为nx30 -->
                     <div class="p-expand">
                         <ul class="clearfix">
                             <c:forEach var="categoryList" items="${categoryList}">
@@ -361,12 +151,6 @@
                 </div>
 
             </div>
-            <!-- 20140726-商品类别-属性-end -->
-
-            <!-- 20140726-商品类别-属性-start -->
-            <!-- 20140726-商品类别-属性-end -->
-
-            <!-- 20140726-商品类别-排序-start -->
             <div class="pro-cate-sort clearfix">
                 <div class="p-title">排序：</div>
                 <div class="p-default">
@@ -379,7 +163,6 @@
                 <div class="p-values">
                     <div class="p-expand">
                         <ul class="clearfix">
-                            <!-- 升序选择（从低到高）： sort-asc selected   降序选择（从高到低）： sort-desc selected -->
                             <li id="sort-1">
                                 <a href="javascript:;" class="sort-price" onclick="ec.product.sort('1')">价格
                                     <s></s>
@@ -389,25 +172,15 @@
                     </div>
                 </div>
             </div>
-            <!-- 20140726-商品类别-排序-end -->
 
         </div>
-        <!-- 20140726-商品类别-end -->
 
         <div class="hr-20"></div>
     </div>
 
 
-    <%--<input id='sField' type='hidden' value='0'/>
-    <input id='sType' type='hidden' value='0'/>
-    <script src="http://res9.vmallres.com/20180323/js/product/new_list.min.js?20171028"></script>--%>
-    <%--<script>
-        ec.load("ec.pager");
-    </script>--%>
     <div class="layout">
-        <!-- 20140726-频道-列表-start -->
         <div class="channel-list">
-            <!-- 20140727-商品列表-start -->
             <div class="pro-list clearfix">
                 <ul>
                     <li>
@@ -437,22 +210,17 @@
                                         <td>
                                             <a target="_blank" href="/product/10086070385182.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>392人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                            <%--<s class="p-tag">
                                 <img alt="荣耀畅玩7A 全网通标配版 2GB+32GB（极光蓝）"
                                      src="http://res.vmallres.com/pimages//tag/87/1497576023361.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -481,22 +249,17 @@
                                         <td>
                                             <a href="http://www.vmall.com/product/10086453929323.html" target="_blank"
                                                class="p-button-an">
-                                                <span>立即预约</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>0人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                            <%--<s class="p-tag">
                                 <img alt="华为畅享8e 3GB+32GB 全网通版（黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -527,13 +290,8 @@
                                         <td>
                                             <a target="_blank" href="/product/10086453929323.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>0人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -569,22 +327,17 @@
                                         <td>
                                             <a target="_blank" href="/product/10086195106339.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>736人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                            <%--<s class="p-tag">
                                 <img alt="华为畅享8 Plus 4GB+128GB 全网通版（金色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -613,22 +366,17 @@
                                         <td>
                                             <a target="_blank" href="/product/10086733534868.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>444人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                           <%-- <s class="p-tag">
                                 <img alt="华为畅享8 4GB+64GB 全网通高配版（蓝色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -659,22 +407,17 @@
                                         <td>
                                             <a href="http://sale.vmall.com/p20buy.html" target="_blank"
                                                class="p-button-an">
-                                                <span>立即预约</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>0人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                          <%--  <s class="p-tag">
                                 <img alt="HUAWEI P20 Pro 6GB+64GB 全网通版（亮黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -704,22 +447,17 @@
                                         <td>
                                             <a href="http://sale.vmall.com/p20buy.html" target="_blank"
                                                class="p-button-an">
-                                                <span>立即预约</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>0人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                          <%--  <s class="p-tag">
                                 <img alt="HUAWEI P20 6GB+64GB 全网通版（亮黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -750,23 +488,18 @@
                                         <td>
                                             <a target="_blank" href="/product/10086570096517.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>4206人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                           <%-- <s class="p-tag">
                                 <img alt="【新品首发】HUAWEI nova 3e 4GB+128GB 全网通版（克莱因蓝）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"
                                 />
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -796,13 +529,8 @@
                                         <td>
                                             <a href="javascript:;" onclick="ec.product.arrival(10086276179107)"
                                                class="p-button-an">
-                                                <span>到货通知</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>5人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -837,13 +565,8 @@
                                         <td>
                                             <a href="javascript:;" onclick="ec.product.arrival(444314191)"
                                                class="p-button-an">
-                                                <span>到货通知</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>4365人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -879,13 +602,8 @@
                                         <td>
                                             <a target="_blank" href="/product/10086883263315.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>9519人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -921,13 +639,8 @@
                                         <td>
                                             <a href="javascript:;" onclick="ec.product.arrival(10086294294998)"
                                                class="p-button-an">
-                                                <span>到货通知</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>3人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -961,22 +674,17 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/570379791.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>50614人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
+                           <%-- <s class="p-tag">
                                 <img alt="荣耀V10 全网通高配版 6GB+64GB（极光蓝）"
                                      src="http://res.vmallres.com/pimages//tag/77/1497575918300.png"/>
-                            </s>
+                            </s>--%>
                         </div>
                     </li>
                     <li>
@@ -1008,13 +716,8 @@
                                         <td>
                                             <a target="_blank" href="/product/10086260510042.html"
                                                class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>29人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1049,13 +752,8 @@
                                         <td>
                                             <a href="javascript:;" onclick="ec.product.arrival(107557000)"
                                                class="p-button-an">
-                                                <span>到货通知</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>86723人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1089,13 +787,8 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/501317311.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>22861人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1129,13 +822,8 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/832675437.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>3879人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1169,13 +857,8 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/144380118.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>35575人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1209,13 +892,8 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/478362844.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>70852人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -1251,22 +929,13 @@
                                     <tr>
                                         <td>
                                             <a target="_blank" href="/product/135859985.html" class="p-button-cart">
-                                                <span>选购</span>
+                                                <span>加入购物车</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <label class="p-button-score">
-                                                <span>7941人评价</span>
-                                                </a>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <s class="p-tag">
-                                <img alt="HUAWEI nova 2s 6GB+64G 全网通版（樱粉金）"
-                                     src="http://res.vmallres.com/pimages//tag/95/1497576073762.png"/>
-                            </s>
                         </div>
                     </li>
                 </ul>
