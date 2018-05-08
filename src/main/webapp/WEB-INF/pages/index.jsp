@@ -166,7 +166,7 @@
             <li ID='firstImg'
                 style="background:url('https://res.vmallres.com/pimages//sale/2018-04/20180425113736396c.jpg') 50% 0px no-repeat ;display: block;">
                 <div style="width:100%;">
-                    <img src="https://res.vmallres.com/pimages//sale/2018-04/20180425113736396c.jpg"
+                    <img src="http://image.lubiao.com/20180425113736396c.jpg"
                          style="display:none;"/>
                     <a style="width:100%;height:450px;display:block;" href="#"></a>
                 </div>
@@ -202,15 +202,14 @@
                     <ul class="grid-list clearfix">
                         <li class="grid-items grid-items-md ">
                             <a class="thumb" href="javascript:;">
-                                <img data-lazy-src="https://res0.vmallres.com/pimages//frontLocation/content/1268817/1521556239580.jpg"
-                                     alt=""/>
+                                <img src="http://image.lubiao.com/1521556239580.jpg" alt=""/>
                             </a>
                         </li>
                         <c:forEach var="phone" items="${phone.list}" begin="0" end="6" step="1">
                             <li class="grid-items" title="${phone.name}${phone.subtitle}">
                                 <a class="thumb" href="javascript:;">
                                     <p class="grid-img">
-                                        <img data-lazy-src="${phone.mainImage}" alt="${phone.name}"/>
+                                        <img src="http://image.lubiao.com/${phone.mainImage}" alt="${phone.name}"/>
                                     </p>
                                     <div class="grid-title">${phone.name}</div>
                                     <p class="grid-desc">${phone.subtitle}&nbsp;</p>
@@ -238,15 +237,14 @@
                     <ul class="grid-list clearfix">
                         <li class="grid-items grid-items-md ">
                             <a class="thumb" href="javascript:;">
-                                <img data-lazy-src="https://res0.vmallres.com/pimages//frontLocation/content/1947317/1524838871726.jpg"
-                                     alt=""/>
+                                <img src="http://image.lubiao.com/1524838871726.jpg" alt=""/>
                             </a>
                         </li>
                         <c:forEach var="computer" items="${computer.list}" begin="2" end="4" step="1">
                             <li class="grid-items" title="${computer.name}${computer.subtitle}">
                                 <a class="thumb" href="javascript:;">
                                     <p class="grid-img">
-                                        <img data-lazy-src="${computer.mainImage}" alt="${computer.name}"/>
+                                        <img src="http://image.lubiao.com/${computer.mainImage}" alt="${computer.name}"/>
                                     </p>
                                     <div class="grid-title">${computer.name}</div>
                                     <p class="grid-desc">${computer.subtitle}&nbsp;</p>
@@ -273,15 +271,15 @@
                     <ul class="grid-list clearfix">
                         <li class="grid-items grid-items-md ">
                             <a class="thumb" href="javascript:;">
-                                <img data-lazy-src="https://res0.vmallres.com/pimages//frontLocation/content/2440103/1510043740940.jpg"
+                                <img src="http://image.lubiao.com/1510043740940.jpg"
                                      alt=""/>
                             </a>
                         </li>
-                        <c:forEach var="ware" items="${ware.list}" begin="2" end="4" step="1">
+                        <c:forEach var="ware" items="${ware.list}" begin="0" end="6" step="1">
                             <li class="grid-items" title="${ware.name}${ware.subtitle}">
                                 <a class="thumb" href="javascript:;">
                                     <p class="grid-img">
-                                        <img data-lazy-src="${ware.mainImage}" alt="${ware.name}"/>
+                                        <img src="http://image.lubiao.com/${ware.mainImage}" alt="${ware.name}"/>
                                     </p>
                                     <div class="grid-title">${ware.name}</div>
                                     <p class="grid-desc">${ware.subtitle}&nbsp;</p>
@@ -311,15 +309,15 @@
                         <li class="grid-items grid-items-lg">
                             <a class="thumb" href="javascript:;"
                                onclick="pushFoolAdvertMsg('5','智能家居','https://res0.vmallres.com/pimages//frontLocation/content/957167/1521713311424.jpg','1521713311424.jpg','https://www.vmall.com/product/202235028.html')">
-                                <img data-lazy-src="https://res0.vmallres.com/pimages//frontLocation/content/957167/1523520344098.png"
+                                <img src="http://image.lubiao.com/1523520344098.png"
                                      alt=""/>
                             </a>
                         </li>
-                        <c:forEach var="home" items="${home.list}" begin="2" end="4" step="1">
+                        <c:forEach var="home" items="${home.list}" begin="0" end="6" step="1">
                             <li class="grid-items" title="${home.name}${home.subtitle}">
                                 <a class="thumb" href="javascript:;">
                                     <p class="grid-img">
-                                        <img data-lazy-src="${home.mainImage}" alt="${home.name}"/>
+                                        <img src="http://image.lubiao.com/${home.mainImage}" alt="${home.name}"/>
                                     </p>
                                     <div class="grid-title">${home.name}</div>
                                     <p class="grid-desc">${home.subtitle}&nbsp;</p>
