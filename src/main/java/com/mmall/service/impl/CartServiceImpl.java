@@ -1,5 +1,6 @@
 package com.mmall.service.impl;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.mmall.common.Const;
 import com.mmall.common.ResponseCode;
@@ -69,12 +70,29 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public ServerResponse<CartVo> update(Integer userId, Integer productId, Integer count) {
-        return null;
+        if(productId == null || count == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
+        Cart cart = cartMapper.selectCartByUserIdProductId(userId,productId);
+        if(cart != null){
+            cart.setQuantity(count);
+        }
+        cartMapper.updateByPrimaryKey(cart);
+        return this.list(userId);
     }
 
     @Override
     public ServerResponse<CartVo> deleteProduct(Integer userId, String productIds) {
-        return null;
+        List<String> productList = Splitter.on(",").splitToList(productIds);
+        if(CollectionUtils.isEmpty(productList)){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
+        int countRow = cartMapper.deleteByUserIdProductIds(userId,productList);
+        if(countRow > 0){
+            return ServerResponse.createBySuccessMessage("删除成功");
+        }
+        return ServerResponse.createByErrorMessage("删除失败");
+        //return this.list(userId);
     }
 
     @Override
@@ -85,7 +103,8 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public ServerResponse<CartVo> selectOrUnSelect(Integer userId, Integer productId, Integer checked) {
-        return null;
+        cartMapper.checkedOrUncheckedProduct(userId,productId,checked);
+        return this.list(userId);
     }
 
     @Override

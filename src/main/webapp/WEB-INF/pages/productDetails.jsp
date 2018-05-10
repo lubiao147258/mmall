@@ -11,6 +11,7 @@
     <link href="http://res8.vmallres.com/20180504/css/echannel/main.min.css?20170609" rel="stylesheet" type="text/css">
     <link href="http://res8.vmallres.com/20180504/css/product/main.min.css?20170710" rel="stylesheet" type="text/css">
     <script src="http://res9.vmallres.com/20180323/js/common/base/jquery-1.4.4.min.js"></script>
+
 </head>
 <body class="wide">
 <link href="${basePath}/resources/css/mmall.css" rel="stylesheet" type="text/css">
@@ -319,8 +320,8 @@
             </div>
         </div>
     </div>
-
 </div>
+
 <!--    提示框 start -->
 <%@include file="../common/msgBox.jsp" %>
 <!--    提示框 -->

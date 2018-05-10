@@ -47,8 +47,8 @@
                     <a href="#" timeType="timestamp">我的订单</a>
                 </li>
                 <li>
-                    <a href="#" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">
-                        <span>购物车(<span id="header-cart-total">0</span>)</span>
+                    <a href="${basePath}/cart/" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">
+                        <span>购物车</span>
                     </a>
                 </li>
             </ul>
@@ -211,7 +211,7 @@
                         </li>
                         <c:forEach var="phone" items="${phone.list}" begin="0" end="6" step="1">
                             <li class="grid-items" title="${phone.name}${phone.subtitle}">
-                                <a class="thumb" href="javascript:;">
+                                <a class="thumb" href="#" onclick="productDetail(${phone.id})">
                                     <p class="grid-img">
                                         <img src="http://image.lubiao.com/${phone.mainImage}" alt="${phone.name}"/>
                                     </p>
@@ -245,8 +245,8 @@
                             </a>
                         </li>
                         <c:forEach var="computer" items="${computer.list}" begin="2" end="4" step="1">
-                            <li class="grid-items" title="${computer.name}${computer.subtitle}">
-                                <a class="thumb" href="javascript:;">
+                            <li class="grid-items" title="${computer.name}${computer.subtitle}" >
+                                <a class="thumb" href="#" onclick="productDetail(${computer.id})">
                                     <p class="grid-img">
                                         <img src="http://image.lubiao.com/${computer.mainImage}" alt="${computer.name}"/>
                                     </p>
@@ -281,7 +281,7 @@
                         </li>
                         <c:forEach var="ware" items="${ware.list}" begin="0" end="6" step="1">
                             <li class="grid-items" title="${ware.name}${ware.subtitle}">
-                                <a class="thumb" href="javascript:;">
+                                <a class="thumb" href="#" onclick="productDetail(${ware.id})">
                                     <p class="grid-img">
                                         <img src="http://image.lubiao.com/${ware.mainImage}" alt="${ware.name}"/>
                                     </p>
@@ -318,8 +318,8 @@
                             </a>
                         </li>
                         <c:forEach var="home" items="${home.list}" begin="0" end="6" step="1">
-                            <li class="grid-items" title="${home.name}${home.subtitle}">
-                                <a class="thumb" href="javascript:;">
+                            <li class="grid-items" title="${home.name}${home.subtitle}" >
+                                <a class="thumb" href="#" onclick="productDetail(${home.id})">
                                     <p class="grid-img">
                                         <img src="http://image.lubiao.com/${home.mainImage}" alt="${home.name}"/>
                                     </p>
@@ -334,6 +334,15 @@
             </div>
         </div>
     </div>
+    <form id="hiddenForm2" action="${basePath}/product/productDetail" method="post" target="_blank">
+        <input type="hidden" name="productId" id="hiddenId3" />
+    </form>
+    <script>
+        function productDetail(productId){
+            $("#hiddenId3").val(productId);
+            $("#hiddenForm2").submit();
+        }
+    </script>
 
 
     <div class="hr-20"></div>
