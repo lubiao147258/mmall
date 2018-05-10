@@ -90,9 +90,10 @@
                 <!-- 2017-02-15-搜索条-焦点为search-form增加className:hover -start -->
                 <div class="search-bar relative" id="searchBar-area">
                     <div class="search-bar-form" id="search-bar-form">
-                        <form method="get" action="${basePath}/product/list.do" >
+                        <form id="searchForm" method="post" action="${basePath}/product/listByCategory" >
+                            <input type="hidden" id="pageNum" name="pageNum" value="1">
                             <input type="text" class="text" name="keyword" maxlength="200" id="search-kw"
-                                   autocomplete="off" placeholder="根据关键字搜索商品"/>
+                                   autocomplete="off" placeholder="根据关键字搜索商品" value="${keyword}"/>
                             <input type="hidden" name="categoryId" value="${category.id}"/>
                             <input type="submit" class="button" value="搜索"/>
                         </form>
@@ -110,7 +111,9 @@
         <!--面包屑 -->
         <div class="breadcrumb-area fcn">
             <a href="#" title="首页">首页</a>&nbsp;>&nbsp;
-
+            <c:if test="${not empty parentCategory}">
+                <span>${parentCategory.name}</span>&nbsp;>&nbsp;
+            </c:if>
             <span>${category.name}</span>
         </div>
     </div>
@@ -123,20 +126,43 @@
                 <div class="p-title">分类：</div>
                 <div class="p-default">
                     <ul>
-                        <li id="first-category" class="selected">
-                            <a href="javascript:;">全部</a>
-                        </li>
+                        <c:if test="${empty parentCategory}">
+                            <li id="first-category" class="selected">
+                                <a href="#">全部</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty parentCategory}">
+                            <li id="first-category">
+                                <a href="#" onclick="goCategory(${parentCategory.id})">全部</a>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
 
                 <div class="p-values">
                     <div class="p-expand">
                         <ul class="clearfix">
-                            <c:forEach var="categoryList" items="${categoryList}">
-                                <li>
-                                    <a href="#" onclick="goCategory(${categoryList.id})">${categoryList.name}</a>
-                                </li>
-                            </c:forEach>
+                            <c:if test="${empty sameLevelCategoryList}">
+                                <c:forEach var="categoryList" items="${categoryList}">
+                                    <li>
+                                        <a href="#" onclick="goCategory(${categoryList.id})">${categoryList.name}</a>
+                                    </li>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${not empty sameLevelCategoryList}">
+                                <c:forEach var="categoryList" items="${sameLevelCategoryList}">
+                                    <c:if test="${categoryList.name eq category.name}">
+                                        <li class="selected">
+                                            <a href="#" onclick="goCategory(${categoryList.id})">${categoryList.name}</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${categoryList.name ne category.name}">
+                                        <li>
+                                            <a href="#" onclick="goCategory(${categoryList.id})">${categoryList.name}</a>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </c:if>
                         </ul>
                         <form id="hiddenForm" action="${basePath}/product/listByCategory" method="post">
                             <input type="hidden" name="categoryId" id="hiddenId2" />
@@ -163,8 +189,8 @@
                 <div class="p-values">
                     <div class="p-expand">
                         <ul class="clearfix">
-                            <li id="sort-1">
-                                <a href="javascript:;" class="sort-price" onclick="ec.product.sort('1')">价格
+                            <li id="sort-1" <%--class="sort-asc selected"--%>>
+                                <a href="javascript:;" class="sort-price">价格
                                     <s></s>
                                 </a>
                             </li>
@@ -183,47 +209,56 @@
         <div class="channel-list">
             <div class="pro-list clearfix">
                 <ul>
-                    <li>
-                        <div class="pro-panels">
-                            <p class="p-img">
-                                <a target="_blank" href="/product/10086070385182.html"
-                                   title="荣耀畅玩7A 全网通标配版 2GB+32GB（极光蓝）" onclick="pushListProClickMsg('2601010034903')">
-                                    <img alt="荣耀畅玩7A 全网通标配版 2GB+32GB（极光蓝）"
-                                         src="http://res.vmallres.com/pimages//product/6901443225637/428_428_1522135590524mp.jpg"
-                                    />
-                                </a>
-                            </p>
-                            <p class="p-name">
-                                <a target="_blank" href="/product/10086070385182.html"
-                                   title="荣耀畅玩7A 全网通标配版 2GB+32GB（极光蓝）" onclick="pushListProClickMsg('2601010034903')">荣耀畅玩7A
-                                    全网通标配版 2GB+32GB（极光蓝）
-                                    <span class="red"></span>
-                                </a>
-                            </p>
-                            <p class="p-price">
-                                <b>&yen;799</b>
-                            </p>
-                            <div class="p-button clearfix">
-                                <table colspan="0" border="0" rowspan="0">
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <a target="_blank" href="/product/10086070385182.html"
-                                               class="p-button-cart">
-                                                <span>加入购物车</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <c:if test="${page.total == 0}">
+                        <li style="margin-left: -60px; color:#e01d20;">很抱歉，没有找到您需要的商品。<li>
+                    </c:if>
+                    <c:forEach var="productList" items="${page.list}">
+                        <li>
+                            <div class="pro-panels">
+                                <p class="p-img">
+                                    <a href="#" onclick="productDetail(${productList.id})"
+                                       title="${productList.name}${productList.subtitle}">
+                                        <img alt="${productList.name}${productList.subtitle}" src="http://image.lubiao.com/${productList.mainImage}"/>
+                                    </a>
+                                </p>
+                                <p class="p-name">
+                                    <a href="#" onclick="productDetail(${productList.id})"
+                                       title="${productList.name}${productList.subtitle}">${productList.name}
+                                        <span class="red"></span>
+                                    </a>
+                                </p>
+                                <p class="p-price">
+                                    <b>&yen;${productList.price}</b>
+                                </p>
+                                <div class="p-button clearfix">
+                                    <table colspan="0" border="0" rowspan="0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <a  href="#" onclick="productDetail(${productList.id})"
+                                                   class="p-button-cart">
+                                                    <span>加入购物车</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <%--<s class="p-tag">
-                                <img alt="荣耀畅玩7A 全网通标配版 2GB+32GB（极光蓝）"
-                                     src="http://res.vmallres.com/pimages//tag/87/1497576023361.png"/>
-                            </s>--%>
-                        </div>
-                    </li>
-                    <li>
+                        </li>
+                    </c:forEach>
+
+                    <form id="hiddenForm2" action="${basePath}/product/productDetail" method="post" target="_blank">
+                        <input type="hidden" name="productId" id="hiddenId3" />
+                    </form>
+                    <script>
+                        function productDetail(productId){
+                            $("#hiddenId3").val(productId);
+                            $("#hiddenForm2").submit();
+                        }
+                    </script>
+
+                    <%--<li>
                         <div class="pro-panels">
                             <p class="p-img">
                                 <a target="_blank" href="/product/10086157327552.html" title="华为畅享8e 3GB+32GB 全网通版（黑色）"
@@ -256,10 +291,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <%--<s class="p-tag">
+                            &lt;%&ndash;<s class="p-tag">
                                 <img alt="华为畅享8e 3GB+32GB 全网通版（黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -334,10 +369,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <%--<s class="p-tag">
+                            &lt;%&ndash;<s class="p-tag">
                                 <img alt="华为畅享8 Plus 4GB+128GB 全网通版（金色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -373,10 +408,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                           <%-- <s class="p-tag">
+                           &lt;%&ndash; <s class="p-tag">
                                 <img alt="华为畅享8 4GB+64GB 全网通高配版（蓝色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -414,10 +449,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                          <%--  <s class="p-tag">
+                          &lt;%&ndash;  <s class="p-tag">
                                 <img alt="HUAWEI P20 Pro 6GB+64GB 全网通版（亮黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -454,10 +489,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                          <%--  <s class="p-tag">
+                          &lt;%&ndash;  <s class="p-tag">
                                 <img alt="HUAWEI P20 6GB+64GB 全网通版（亮黑色）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -495,11 +530,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                           <%-- <s class="p-tag">
+                           &lt;%&ndash; <s class="p-tag">
                                 <img alt="【新品首发】HUAWEI nova 3e 4GB+128GB 全网通版（克莱因蓝）"
                                      src="http://res.vmallres.com/pimages//tag/79/1497575938261.png"
                                 />
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -681,10 +716,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                           <%-- <s class="p-tag">
+                           &lt;%&ndash; <s class="p-tag">
                                 <img alt="荣耀V10 全网通高配版 6GB+64GB（极光蓝）"
                                      src="http://res.vmallres.com/pimages//tag/77/1497575918300.png"/>
-                            </s>--%>
+                            </s>&ndash;%&gt;
                         </div>
                     </li>
                     <li>
@@ -937,16 +972,18 @@
                                 </table>
                             </div>
                         </div>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
             <!-- 20140727-商品列表-end -->
             <!-- 分页-start -->
-            <div class="up-clearfix">
-                <div class="up-pull-right">
-                    <%@include file="../common/page.jsp"%>
+            <c:if test="${page.total > 20}">
+                <div class="up-clearfix">
+                    <div class="up-pull-right">
+                        <%@include file="../common/page2.jsp"%>
+                    </div>
                 </div>
-            </div>
+            </c:if>
         </div>
     </div>
     <!--    提示框 start -->

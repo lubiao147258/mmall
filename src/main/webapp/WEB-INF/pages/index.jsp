@@ -5,7 +5,7 @@
     <script src="${basePath}/resources/js/mmall.js"></script>
     <link rel="shortcut icon" href="${basePath}/resources/images/favicon_logo.ico">
     <title>首页——MMall电商平台</title>
-    <link href="https://res8.vmallres.com/20180305/css/echannel/ec.core.base.min.css?20170722" rel="stylesheet"
+    <link href="http://res8.vmallres.com/20180323/css/echannel/ec.core.base.min.css?20170722" rel="stylesheet"
           type="text/css">
     <link href="https://res8.vmallres.com/20180305/css/echannel/index.min.css?20170320" rel="stylesheet"
           type="text/css">
@@ -99,16 +99,20 @@
         </div>
 
         <div class="right">
+            <!-- 2017-02-15-搜索条-焦点为search-form增加className:hover -start -->
             <div class="search-bar relative" id="searchBar-area">
                 <div class="search-bar-form" id="search-bar-form">
-                    <form method="post" action="${basePath}/product/list.do">
-                        <input type="text" class="text" name="keyword" maxlength="200" id="search-kw" autocomplete="off"
-                               placeholder="根据关键字搜索商品"/>
+                    <form id="searchForm" method="post" action="${basePath}/product/listByCategory" >
+                        <input type="hidden" id="pageNum" name="pageNum" value="1">
+                        <input type="text" class="text" name="keyword" maxlength="200" id="search-kw"
+                               autocomplete="off" placeholder="根据关键字搜索商品"/>
+                        <input type="hidden" name="categoryId" value="0"/>
                         <input type="submit" class="button" value="搜索"/>
                     </form>
                 </div>
 
             </div>
+            <!-- 2017-02-15-搜索条-end -->
         </div>
     </div>
 </div>
@@ -194,7 +198,7 @@
             <div class="h">
                 <h2 class="channel-title fl">手机</h2>
                 <div class="channel-more fr">
-                    <a href="javascript:;">更多></a>
+                    <a href="#" onclick="goCategory(100001)">更多></a>
                 </div>
             </div>
             <div class="b">
@@ -229,7 +233,7 @@
             <div class="h">
                 <h2 class="channel-title fl">笔记本电脑</h2>
                 <div class="channel-more fr">
-                    <a href="/list-40" target="_blank">更多></a>
+                    <a href="#" onclick="goCategory(100002)">更多></a>
                 </div>
             </div>
             <div class="b">
@@ -263,7 +267,7 @@
             <div class="h">
                 <h2 class="channel-title fl">智能穿戴</h2>
                 <div class="channel-more fr">
-                    <a href="/list-59" target="_blank" onclick="pushFoolMsg('4','智能穿戴','/list-59')">更多></a>
+                    <a href="#" onclick="goCategory(100003)">更多></a>
                 </div>
             </div>
             <div class="b">
@@ -300,7 +304,7 @@
             <div class="h">
                 <h2 class="channel-title fl">智能家居</h2>
                 <div class="channel-more fr">
-                    <a href="/list-43" target="_blank" onclick="pushFoolMsg('5','智能家居','/list-43')">更多></a>
+                    <a href="#" onclick="goCategory(100004)">更多></a>
                 </div>
             </div>
             <div class="b">
@@ -346,11 +350,6 @@
 
 <script src="${basePath}/resources/js/mmall3.js"></script>
 
-<div class="hungBar">
-    <a href="#" class="hungBar-top fr" id="hungBar-top" title="返回顶部">
-        <i>返回顶部</i>
-    </a>
-</div>
 
 <!--    提示框 start -->
 <%@include file="../common/msgBox.jsp" %>
