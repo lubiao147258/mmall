@@ -65,6 +65,12 @@ public class MainController {
         return "/user/login";
     }
 
+    @RequestMapping({"/logout", "logout"})
+    public String toLogout(HttpSession session) {
+        session.removeAttribute(Const.CURRENT_USER);
+        return "/user/login";
+    }
+
     @RequestMapping("/register")
     public String toRegisterPage() {
         return "/user/register";

@@ -46,12 +46,11 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" timeType="timestamp">我的订单</a>
+                    <a href="${basePath}/order/orderList" timeType="timestamp">我的订单</a>
                 </li>
                 <li>
-                    <a href="#" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">
-							<span>购物车(
-								<span id="header-cart-total">0</span>)</span>
+                    <a href="${basePath}/cart/" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">
+                        <span>购物车</span>
                     </a>
                 </li>
             </ul>

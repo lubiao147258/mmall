@@ -43,8 +43,13 @@
                         </div>
                     </div>
                 </li>
+                <c:if test="${not empty CURRENT_USER}">
+                    <li>
+                        <a href="${basePath}/logout" timeType="timestamp">退出登录</a>
+                    </li>
+                </c:if>
                 <li>
-                    <a href="#" timeType="timestamp">我的订单</a>
+                    <a href="${basePath}/order/orderList" timeType="timestamp">我的订单</a>
                 </li>
                 <li>
                     <a href="${basePath}/cart/" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">

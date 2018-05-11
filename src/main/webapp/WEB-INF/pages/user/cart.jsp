@@ -53,7 +53,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" timeType="timestamp">我的订单</a>
+                    <a href="${basePath}/order/orderList" timeType="timestamp">我的订单</a>
                 </li>
             </ul>
         </div>

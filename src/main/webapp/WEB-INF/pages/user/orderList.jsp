@@ -52,6 +52,11 @@
                 <li>
                     <a href="#" timeType="timestamp">我的订单</a>
                 </li>
+                <li>
+                    <a href="${basePath}/cart/" class="icon-minicart" rel="nofollow" timeType="timestamp" target="blank">
+                        <span>购物车</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -77,6 +82,16 @@
 
 <div class="layout " >
     <div class="hr-20"></div>
+
+    <!--20170721-购物车-空数据-start-->
+    <c:if test="${empty page.list}">
+        <div id="cart-empty-msg" class="sc-empty" style="display: block;">
+            <span class="icon-minicart"></span>
+            <p>您目前没有订单哟哦~</p>
+            <a href="${basePath}/">去逛逛</a>
+        </div>
+    </c:if>
+    <!--20170721-购物车-空数据-end-->
 
     <c:forEach var="orderList" items="${page.list}">
         <div class="sc-pro-title clearfix" id="shopping-cart-product-list" style="border: 1px solid #EEE;background: #EEE;margin-top: 20px;">
@@ -133,8 +148,8 @@
         </c:forEach>
     </c:forEach>
 </div>
-
-<div class="layout" >
+<c:if test="${not empty page.list}">
+    <div class="layout" >
     <div class="up-clearfix">
         <form id="searchForm" method="post" action="${basePath}/order/orderList">
             <input type="hidden" id="pageNum" name="pageNum" value="1">
@@ -144,6 +159,7 @@
         </div>
     </div>
 </div>
+</c:if>
 
 <!--    提示框 start -->
 <%@include file="../../common/msgBox.jsp"%>

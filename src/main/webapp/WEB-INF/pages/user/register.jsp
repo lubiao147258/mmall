@@ -154,7 +154,7 @@
                                 $("#msgBox").modal('show');
                                 $("#msgBoxOKButton").on('click' , function(){
                                     //parent.window.location.reload();
-                                    window.location.href='${basePath}/user/get_user_info.do';
+                                    window.location.href='${basePath}/login';
                                 });
                             } else {
                                 $("#msgBoxInfo").html(data.msg);
