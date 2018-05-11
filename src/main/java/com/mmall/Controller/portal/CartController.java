@@ -1,10 +1,12 @@
 package com.mmall.Controller.portal;
 
+import com.github.pagehelper.PageInfo;
 import com.mmall.common.Const;
 import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.ICartService;
+import com.mmall.service.IShippingService;
 import com.mmall.vo.CartVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class CartController {
 
     @Autowired
     private ICartService iCartService;
+
+    @Autowired
+    private IShippingService iShippingService;
 
 
     @RequestMapping({"/", ""})
@@ -113,6 +118,10 @@ public class CartController {
         //获取当前登陆的用户信息
         User CURRENT_USER = (User) session.getAttribute(Const.CURRENT_USER);
         model.addAttribute("CURRENT_USER", CURRENT_USER);
+
+        //获取用户当前的收货地址
+        ServerResponse<PageInfo> shipping = iShippingService.list(user.getId(),1,20);
+        model.addAttribute("shipping" , shipping.getData());
 
         CartVo cartVo = iCartService.list(user.getId()).getData();
         model.addAttribute("cartVo" , cartVo);

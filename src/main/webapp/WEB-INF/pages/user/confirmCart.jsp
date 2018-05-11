@@ -101,120 +101,37 @@
             </div>
             <div class="order-address-list" id="order-address-list">
                 <ul class="clearfix">
-                    <li id="myAddress-57404645" index="57404645" class="hide current" style="display: list-item;">
-                        <div class="address-supplement hide" style="display: none;">
-                            <a href="javascript:;" onclick="ec.order.myAddress.edit(57404645)" class="address-add-btn">请您核实地址</a>
-                        </div>
-                        <span id="defaultAddress-57404645" class="address-status hide">默认地址</span>
-                        <div class="address-main" onclick="ec.order.myAddress.select(this);">
-                            <p class="clearfix">
-                                <b id="consignee-name-57404645">热特瑞</b>
-                                <span id="consignee-tel-57404645">13567890987</span>
-                            </p>
-                            <div class="address-detail" id="address-detail-57404645">
-                                安徽&nbsp;蚌埠&nbsp;东市区&nbsp;&nbsp;玩儿翁
+
+                    <c:forEach var="shipping" items="${shipping.list}">
+                        <li id="myAddress-${shipping.id}"  class="hide " style="display: list-item;" onclick="chooseAddress(${shipping.id})">
+                            <%--<input type="hidden" id="shippingID-${shipping.id}" value="${shipping.id}"/>--%>
+                            <div class="address-main">
+                                <p class="clearfix">
+                                    <b id="consignee-name-57404645">${shipping.receiverName}</b>
+                                    <span id="consignee-tel-57404645">${shipping.receiverPhone}</span>
+                                </p>
+                                <div class="address-detail" id="address-detail-57404645">
+                                        ${shipping.receiverProvince}&nbsp;${shipping.receiverCity}&nbsp;${shipping.receiverAddress}&nbsp;&nbsp;
+                                </div>
                             </div>
-                        </div>
-                        <input type="hidden" id="needL4Addr" value="false">
-                        <input type="hidden" id="needModify" value="false">
-                        <input type="hidden" name="streetName" value="">
-                        <input type="hidden" name="myAddress" id="input-myAddress57404645" data-district="3544"
-                               data-id="57404645"
-                               value="57404645">
-                        <div class="address-sub">
-                            <a class="address-edit" href="javascript:;"
-                               onclick="ec.order.myAddress.edit(57404645)">编辑</a>
-                            <a class="address-del" href="javascript:;" onclick="ec.order.myAddress.del(this,57404645)">删除</a>
-                            <a id="setAddress-57404645" class="address-default" href="javascript:;"
-                               onclick="ec.order.myAddress.setDetault(57404645)">设为默认</a>
-                        </div>
-                    </li>
-                    <li id="myAddress-57389079" index="57389079" class="">
-                        <div class="address-supplement hide" style="display: none;">
-                            <a href="javascript:;" onclick="ec.order.myAddress.edit(57389079)" class="address-add-btn">请您核实地址</a>
-                        </div>
-                        <span id="defaultAddress-57389079" class="address-status">默认地址</span>
-                        <div class="address-main" onclick="ec.order.myAddress.select(this);">
-                            <p class="clearfix">
-                                <b id="consignee-name-57389079">鲁标</b>
-                                <span id="consignee-tel-57389079">13720387491</span>
-                            </p>
-                            <div class="address-detail" id="address-detail-57389079">湖北&nbsp;武汉&nbsp;洪山区&nbsp;关山街道&nbsp;关南小区东区2栋-1202</div>
-                        </div>
-                        <input type="hidden" id="needL4Addr" value="false">
-                        <input type="hidden" id="needModify" value="false">
-                        <input type="hidden" name="streetName" value="关山街道">
-                        <input type="hidden" name="myAddress" id="input-myAddress57389079" data-district="4822"
-                               data-id="57389079"
-                               value="57389079">
-                        <div class="address-sub">
-                            <a class="address-edit" href="javascript:;"
-                               onclick="ec.order.myAddress.edit(57389079)">编辑</a>
-                            <a class="address-del" href="javascript:;" onclick="ec.order.myAddress.del(this,57389079)">删除</a>
-                            <a id="setAddress-57389079" class="address-default hide" href="javascript:;"
-                               onclick="ec.order.myAddress.setDetault(57389079)">设为默认</a>
-                        </div>
-                    </li>
-                    <li id="myAddress-57404623" index="57404623">
-                        <div class="address-supplement hide" style="display: none;">
-                            <a href="javascript:;" onclick="ec.order.myAddress.edit(57404623)" class="address-add-btn">请您核实地址</a>
-                        </div>
-                        <span id="defaultAddress-57404623" class="address-status hide">默认地址</span>
-                        <div class="address-main" onclick="ec.order.myAddress.select(this);">
-                            <p class="clearfix">
-                                <b id="consignee-name-57404623">扔掉</b>
-                                <span id="consignee-tel-57404623">15899999999</span>
-                            </p>
-                            <div class="address-detail" id="address-detail-57404623">北京&nbsp;北京&nbsp;东城区&nbsp;景山街道&nbsp;发送到</div>
-                        </div>
-                        <input type="hidden" id="needL4Addr" value="false">
-                        <input type="hidden" id="needModify" value="false">
-                        <input type="hidden" name="streetName" value="景山街道">
-                        <input type="hidden" name="myAddress" id="input-myAddress57404623" data-district="6922"
-                               data-id="57404623"
-                               value="57404623">
-                        <div class="address-sub">
-                            <a class="address-edit" href="javascript:;"
-                               onclick="ec.order.myAddress.edit(57404623)">编辑</a>
-                            <a class="address-del" href="javascript:;" onclick="ec.order.myAddress.del(this,57404623)">删除</a>
-                            <a id="setAddress-57404623" class="address-default" href="javascript:;"
-                               onclick="ec.order.myAddress.setDetault(57404623)">设为默认</a>
-                        </div>
-                    </li>
-                    <li id="myAddress-57404633" index="57404633" style="display: list-item;">
-                        <div class="address-supplement hide" style="display: none;">
-                            <a href="javascript:;" onclick="ec.order.myAddress.edit(57404633)" class="address-add-btn">请您核实地址</a>
-                        </div>
-                        <span id="defaultAddress-57404633" class="address-status hide">默认地址</span>
-                        <div class="address-main" onclick="ec.order.myAddress.select(this);">
-                            <p class="clearfix">
-                                <b id="consignee-name-57404633">不过不是个</b>
-                                <span id="consignee-tel-57404633">13577777777</span>
-                            </p>
-                            <div class="address-detail" id="address-detail-57404633">北京&nbsp;北京&nbsp;东城区&nbsp;景山街道&nbsp;v发</div>
-                        </div>
-                        <input type="hidden" id="needL4Addr" value="false">
-                        <input type="hidden" id="needModify" value="false">
-                        <input type="hidden" name="streetName" value="景山街道">
-                        <input type="hidden" name="myAddress" id="input-myAddress57404633" data-district="6922"
-                               data-id="57404633"
-                               value="57404633">
-                        <div class="address-sub">
-                            <a class="address-edit" href="javascript:;"
-                               onclick="ec.order.myAddress.edit(57404633)">编辑</a>
-                            <a class="address-del" href="javascript:;" onclick="ec.order.myAddress.del(this,57404633)">删除</a>
-                            <a id="setAddress-57404633" class="address-default" href="javascript:;"
-                               onclick="ec.order.myAddress.setDetault(57404633)">设为默认</a>
-                        </div>
-                    </li>
-                    <li id="address-empty" class="hide" style="display: none;">
-                        <div class="address-empty">
-                            <a href="javascript:;" class="address-add-btn" onclick="ec.order.myAddress.add()">新增收货地址</a>
-                        </div>
-                    </li>
+
+                            <div class="address-sub">
+                                <a class="address-edit" href="javascript:;"
+                                   onclick="ec.order.myAddress.edit(57404645)">编辑</a>
+                                <a class="address-del" href="javascript:;" onclick="delAddress(${shipping.id})">删除</a>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
+                <input type="hidden" id="currentAddress" value="0"/>
             </div>
-            <input name="orderDistrict" id="order-district" type="hidden" value="3544">
+            <script>
+                function chooseAddress(id){
+                    $("#myAddress-"+id).siblings("li").removeClass("current");  // 删除其他兄弟元素的样式
+                    $("#myAddress-"+id).addClass("current");
+                    $("#currentAddress").val(id);
+                }
+            </script>
         </div>
         <!--20170717-订单表单-地址-end -->
 
@@ -277,7 +194,82 @@
                     $('input[name="productId"]').each(function () {
                         productIds.push($(this).val());
                     });
-                    alert(productIds);
+                    //alert(productIds);
+                    var chooseAddressId = $("#currentAddress").val();
+                    if(chooseAddressId == 0){
+                        $("#msgBoxInfo").html("请选择收货地址");
+                        $("#msgBox").modal('show');
+                        return ;
+                    }
+                    //window.location.href="${basePath}/order/create?shippingId=" + chooseAddressId;
+                    //alert(productIds);
+                    $.ajax({
+                        type : 'POST',
+                        url : '${basePath}/order/create',
+                        data : {
+                            'shippingId' : chooseAddressId
+                        },
+                        dataType : 'json',
+                        success : function(data) {
+                            if (data.status == 0) {
+                                //alert(data.data.orderNo);
+                                window.location.href="${basePath}/order/payCode?orderNo=" + data.data.orderNo;
+                            } else {
+                                $("#msgBoxConfirm").modal('hide');
+                                $("#msgBoxInfo").html("下单失败");
+                                $("#msgBox").modal('show');
+                                $("#msgBoxOKButton").on('click' , function(){
+                                    $("#msgBox").modal('hide');
+                                    //parent.window.location.reload();
+                                });
+                            }
+                        },
+                        error : function(data) {
+                            $("#msgBoxInfo").html("服务器错误");
+                            $("#msgBox").modal('show');
+                        }
+                    });
+
+                }
+
+                function delAddress(id){
+                    $("#msgBoxConfirmInfo").html("确定要删除吗?");
+                    $("#msgBoxConfirm").modal('show');
+                    $("#msgBoxConfirmButton").on('click' , function(){//点击确认按钮时执行下面的方法
+                        $.ajax({
+                            type : 'POST',
+                            url : '${basePath}/shipping/del',
+                            data : {
+                                'shippingId' : id
+                            },
+                            dataType : 'json',
+                            success : function(data) {
+                                if (data.status == 0) {
+                                    $("#msgBoxConfirm").modal('hide');
+                                    $("#msgBoxInfo").html(data.msg);
+                                    $("#msgBox").modal('show');
+                                    $("#msgBoxOKButton").on('click' , function(){
+                                        parent.window.location.reload();
+                                    });
+                                } else {
+                                    $("#msgBoxConfirm").modal('hide');
+                                    $("#msgBoxInfo").html(data.msg);
+                                    $("#msgBox").modal('show');
+                                    $("#msgBoxOKButton").on('click' , function(){
+                                        $("#msgBox").modal('hide');
+                                        //parent.window.location.reload();
+                                    });
+                                }
+                            },
+                            error : function(data) {
+                                $("#msgBoxInfo").html("服务器错误");
+                                $("#msgBox").modal('show');
+                            }
+                        });
+
+
+
+                    });
                 }
 
             </script>
@@ -329,8 +321,7 @@
                                             <tr>
                                                 <th><label>收货人：</label></th>
                                                 <td>
-                                                    <input type="text" class="text vam span-574" name="consignee"
-                                                           value="" validator="validator261525961349027"/>
+                                                    <input type="text" class="text vam span-574" id="receiverName" name="receiverName"/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -343,10 +334,10 @@
                                                         <%--<div id="current-address" class="form-address-detail">
                                                         选择省-市-区-街道
                                                         </div>--%>
-                                                        <select id="province" style="width:48%;">
+                                                        <select id="province" name="receiverProvince" style="width:48%;">
                                                             <option value="0">选择省</option>
                                                         </select>
-                                                        <select id="city" style="width:48%;">
+                                                        <select id="city" name="receiverCity" style="width:48%;">
                                                             <option value="0">选择市</option>
                                                         </select>
                                                     </div>
@@ -354,7 +345,7 @@
                                             </tr>
                                             <tr class="tr-rel">
                                                 <td>
-                                                    <textarea name="address" class="textarea span-574"
+                                                    <textarea id="receiverAddress" name="receiverAddress" class="textarea span-574"
                                                               style="z-index: 1;"></textarea>
                                                 </td>
                                             </tr>
@@ -365,12 +356,12 @@
                                                 <td>
                                                     <div class="vam inline-block">
                                                         <input type="text" class="text  span-229 ime-disabled"
-                                                               name="mobile"
+                                                               name="receiverPhone" id="receiverPhone"
                                                                value="" id="input_label_17" style="z-index: 1;">
                                                     </div>
                                                     <label class="vam" styl="margin-left:2px;">&nbsp;固定电话：&nbsp;</label>
                                                     <div class="vam inline-block">
-                                                        <input type="text" name="phone" value=""
+                                                        <input type="text" name="receiverMobile" id="receiverMobile"
                                                                class="text  span-229 ime-disabled" style="z-index: 1;">
                                                     </div>
                                                 </td>
@@ -381,7 +372,7 @@
                                 </div>
                             </div>
                             <div class="box-button">
-                                <a class="box-ok" href="javascript:;">
+                                <a class="box-ok" href="javascript:;" onclick="submit_address()">
                                     <span>保存并使用</span></a>
                                 <a class="box-cancel" onclick="closeBox()">
                                     <span>取消</span>
@@ -416,8 +407,59 @@
         }
     });
 
+    function submit_address(){
+        var receiverName = $("#receiverName").val();
+        var province = $("#province").val();
+        var city = $("#city").val();
+        var address = $("#receiverAddress").val();
+        var phone = $("#receiverPhone").val();
+        var mobile = $("#receiverMobile").val();
+
+        $.ajax({
+            type : 'POST',
+            url : '${basePath}/shipping/add',
+            data : {
+                'receiverName' : receiverName,
+                'receiverProvince' : province,
+                'receiverCity' : city,
+                'receiverAddress' : address,
+                'receiverPhone' : phone,
+                'receiverMobile' : mobile
+            },
+            dataType : 'json',
+            success : function(data) {
+                if (data.status == 0) {
+                    $("#msgBoxConfirm").modal('hide');
+                    $("#msgBoxInfo").html(data.msg);
+                    $("#msgBox").modal('show');
+                    $("#msgBoxOKButton").on('click' , function(){
+                        parent.window.location.reload();
+                    });
+                } else {
+                    $("#msgBoxConfirm").modal('hide');
+                    $("#msgBoxInfo").html(data.msg);
+                    $("#msgBox").modal('show');
+                    $("#msgBoxOKButton").on('click' , function(){
+                        $("#msgBox").modal('hide');
+                        //parent.window.location.reload();
+                    });
+                }
+            },
+            error : function(data) {
+                $("#msgBoxInfo").html("服务器错误");
+                $("#msgBox").modal('show');
+            }
+        });
+
+    }
+
 
 </script>
+
+
+<!--    提示框 start -->
+<%@include file="../../common/msgBox.jsp"%>
+<!--    提示框 -->
 </body>
 
 </html>

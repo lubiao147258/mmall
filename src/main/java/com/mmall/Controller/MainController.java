@@ -32,7 +32,7 @@ public class MainController {
     @Autowired
     private IProductService iProductService;
 
-    @RequestMapping({"/", ""})
+    @RequestMapping({"","/"})
     public String toIndexpage(HttpSession session, Model model) {
         //获取当前登陆的用户信息
         User CURRENT_USER = (User) session.getAttribute(Const.CURRENT_USER);

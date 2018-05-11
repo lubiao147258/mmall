@@ -22,7 +22,7 @@
 </head>
 
 <body class="wide">
-<link href="${basePath}/resources/css/cart-css.css0">
+<link href="${basePath}/resources/css/cart-css.css">
 <div class="top-banner" id="top-banner-block"></div>
 <img src="https://res.vmallres.com/20180504/images/echannel/icon-common.png" class="hide">
 <div class="shortcut">

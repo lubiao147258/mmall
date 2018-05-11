@@ -1,4 +1,4 @@
-package com.mmall.service.impl;
+package com.mmall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
