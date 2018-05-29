@@ -85,7 +85,7 @@
                     <a class="nav-link" href="${basePath}/manage/product"><i class="icon-notebook"></i> 商品管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-wrench"></i> 个人中心</a>
+                    <a class="nav-link" href="${basePath}/manage/order"><i class="icon-wrench"></i> 订单管理</a>
                 </li>
             </ul>
         </nav>
@@ -249,117 +249,6 @@
     </main>
 </div>
 
-<!-- /.modal-content -->
-<%--<div class="modal animate-fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="myModalLabel">添加用户</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="card-block">
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label">账号</label>
-                            <div class="col-md-10">
-                                <input type="text" id="user_name" class="check-input form-control"
-                                       aria-label="用户名（包含字母／数字／下划线）" placeholder="6-20个字符">
-                                <div class="hint">*请填写6-20个字符的账号</div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label">姓名</label>
-                            <div class="col-md-10">
-                                <input type="text" id="name" class="check-input form-control" aria-label="用户名（包含字母／数字／下划线）"
-                                       placeholder="姓名">
-                                <div class="hint">*请填写4-20个字符的姓名</div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="select">性别</label>
-                            <div class="col-md-10">
-                                <select id="select" name="select" class="form-control">
-                                    <option value="0">请选择</option>
-                                    <option value="1">男</option>
-                                    <option value="2">女</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="class-input">部门</label>
-                            <div class="col-md-10">
-                                <button id="class-input" class="btn btn-primary">部门</button>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="select1">技术方向</label>
-                            <div class="col-md-10">
-                                <select id="select1" name="select" class="form-control">
-                                    <option value="0">请选择</option>
-                                    <option value="1">java</option>
-                                    <option value="2">C++</option>
-                                    <option value="3">测试</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="select2">岗位评定</label>
-                            <div class="col-md-10">
-                                <select id="select2" name="select" class="form-control">
-                                    <option value="0">请选择</option>
-                                    <option value="1">未评定</option>
-                                    <option value="2">1级</option>
-                                    <option value="3">2级</option>
-                                    <option value="4">3级</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label">电话</label>
-                            <div class="col-md-10">
-                                <input type="text" id="phone" class="check-input form-control" placeholder="电话">
-                                <div class="hint">请填写手机号</div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label">邮箱</label>
-                            <div class="col-md-10">
-                                <input type="text" id="user_email" class="check-input form-control" placeholder="邮箱">
-                                <div class="hint">请填写邮箱</div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label">管理员</label>
-                            <div class="col-md-10 from-radio">
-                                <label class="radio-inline" for="inline-radio1">
-                                    <input type="radio" id="inline-radio1" name="inline-radios" value="option1">管理员
-                                </label>
-                                <label class="radio-inline" for="inline-radio2">
-                                    <input type="radio" id="inline-radio2" name="inline-radios" value="option2">老师
-                                </label>
-                                <label class="radio-inline" for="inline-radio3">
-                                    <input type="radio" id="inline-radio3" name="inline-radios" value="option3">学生
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="manage-input">试题分类权限</label>
-                            <div class="col-md-10">
-                                <button id="manage-input" class="btn btn-primary">试题类型</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">确认</button>
-            </div>
-        </div>
-    </div>
-</div>--%>
 <!--    提示框 start -->
 <%@include file="../../common/msgBox.jsp"%>
 <!--    提示框 -->

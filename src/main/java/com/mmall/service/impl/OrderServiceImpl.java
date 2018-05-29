@@ -317,8 +317,13 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public ServerResponse<PageInfo> manageList(int pageNum, int pageSize) {
-        return null;
+    public ServerResponse<PageInfo> manageList(Long orderNo, Integer status , int pageNum,int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Order> orderList = orderMapper.selectAllOrder(orderNo, status);
+        List<OrderVo> orderVoList = this.assembleOrderVoList(orderList,null);
+        PageInfo pageResult = new PageInfo(orderList);
+        pageResult.setList(orderVoList);
+        return ServerResponse.createBySuccess(pageResult);
     }
 
     @Override
