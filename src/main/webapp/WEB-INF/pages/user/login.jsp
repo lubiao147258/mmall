@@ -82,7 +82,7 @@
                         dataType : 'json',
                         success : function(data) {
                             if (data.status == '0') {
-                                window.location.href='${basePath}';
+                                window.location.href='${basePath}/';
                                 /*$("#msgBoxInfo").html(data.msg);
                                 $("#msgBox").modal('show');
                                 $("#msgBoxOKButton").on('click' , function(){

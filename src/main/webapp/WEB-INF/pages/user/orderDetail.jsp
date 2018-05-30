@@ -98,7 +98,11 @@
                             <p>收件人：${orderDetail.shippingVo.receiverName}</p></br>
                             <p>手机号码：${orderDetail.shippingVo.receiverPhone}</p></br>
                             <p>收货地址：${orderDetail.shippingVo.receiverProvince}  ${orderDetail.shippingVo.receiverCity}  ${orderDetail.shippingVo.receiverAddress}</p></br>
-                            <p>订单状态：${orderDetail.statusDesc}</p></br>
+                            <p>订单状态：${orderDetail.statusDesc}
+                                <c:if test="${orderDetail.status eq 10}">
+                                    <a href="${basePath}/order/payCode?orderNo=${orderDetail.orderNo}"><button>立即支付</button></a>
+                                </c:if>
+                            </p></br>
                             <p>支付方式：${orderDetail.paymentTypeDesc}</p>
                         </div>
                     </div>
