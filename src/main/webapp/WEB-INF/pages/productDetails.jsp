@@ -117,7 +117,7 @@
                     <div class="product-gallery-thumbs">
                         <ul id="pro-gallerys" style="left: 0px;">
                             <li class=""><a href="javascript:;"><img
-                                    src="http://image.lubiao.com/428_428_1506589486461mp.jpg"
+                                    src="http://image.lbcto.com/428_428_1506589486461mp.jpg"
                                     alt="荣耀10&nbsp;AI摄影手机&nbsp;6GB+64GB&nbsp;幻影紫&nbsp;全网通 双卡双待 高配版"></a></li>
                             <li class=""><a href="javascript:;"><img
                                     src="https://res.vmallres.com/pimages//product/6901443232420/group//78_78_1523952297552.jpg"

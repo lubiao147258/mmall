@@ -217,7 +217,7 @@
                                 <p class="p-img">
                                     <a href="#" onclick="productDetail(${productList.id})"
                                        title="${productList.name}${productList.subtitle}">
-                                        <img alt="${productList.name}${productList.subtitle}" src="http://image.lubiao.com/${productList.mainImage}"/>
+                                        <img alt="${productList.name}${productList.subtitle}" src="http://image.lbcto.com/${productList.mainImage}"/>
                                     </a>
                                 </p>
                                 <p class="p-name">
