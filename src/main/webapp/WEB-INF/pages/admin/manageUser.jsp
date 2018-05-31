@@ -148,6 +148,7 @@
                                 </button>--%>
                             </div>
                             <div class="card-block">
+                                <c:if test="${!empty page.list}">
                                 <table class="table user-table table-striped">
                                     <thead>
                                     <tr>
@@ -190,6 +191,7 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                </c:if>
                                 <script type="text/javascript">
                                     $('.d').html(function(i,oldHTML){
                                         return oldHTML.replace(/${username}/g,'<font color="red">${username}</font>');
@@ -234,11 +236,18 @@
                                         });
                                     }
                                 </script>
-                                <div class="up-clearfix">
-                                    <div class="up-pull-right">
-                                        <%@include file="../../common/page.jsp"%>
+                                <c:if test="${empty page.list}">
+                                    <div style="width:100%;height:50px;text-align: center;line-height: 50px;">
+                                        <span>没有数据 ( ^ _ ^ )</span>
                                     </div>
-                                </div>
+                                </c:if>
+                                <c:if test="${!empty page.list}">
+                                    <div class="up-clearfix">
+                                        <div class="up-pull-right">
+                                            <%@include file="../../common/page.jsp"%>
+                                        </div>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>

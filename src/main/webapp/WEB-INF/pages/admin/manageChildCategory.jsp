@@ -277,7 +277,7 @@
                                 </script>
                                 <c:if test="${empty page.list}">
                                     <div style="width:100%;height:50px;text-align: center;line-height: 50px;">
-                                        <span>还没有子类呢 ( ^ _ ^ )</span>
+                                        <span>没有数据 ( ^ _ ^ )</span>
                                     </div>
                                 </c:if>
                                 <c:if test="${!empty page.list}">
