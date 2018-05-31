@@ -59,7 +59,7 @@
                 </label>
             </div>
             <div class="login-button">
-                <input style="margin-right: 40px;" type="button" onclick="javascript:window.location.href='${basePath}';" class="btn btn-primary" name="backButton" id="backButton" value="返 回 登 录">
+                <input style="margin-right: 40px;" type="button" onclick="javascript:window.location.href='${basePath}/login';" class="btn btn-primary" name="backButton" id="backButton" value="返 回 登 录">
                 <input style="margin-left: 40px;" type="submit" onclick="doLogin()" class="btn btn-pinterest" name="button" id="button" value="立 即 注 册">
             </div>
             <script>

@@ -1,5 +1,6 @@
 package com.mmall.Controller.backend;
 
+import com.mmall.common.ServerResponse;
 import com.mmall.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,10 @@ public class OrderManageController {
                               @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                               @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
 
-        System.out.println(orderNo +":"+status);
+
+        model.addAttribute("orderNo", orderNo);
+        model.addAttribute("status", status);
+
         Object page = iOrderService.manageList(orderNo,status,pageNum,pageSize).getData();
         model.addAttribute("page", page);
         return "/admin/manageOrder";
@@ -43,4 +47,11 @@ public class OrderManageController {
         model.addAttribute("page", page);
         return page;
     }*/
+
+    @RequestMapping("/manageSendGoods")
+    @ResponseBody
+    public Object manageSendGoods(Long orderNo){
+        ServerResponse serverResponse = iOrderService.manageSendGoods(orderNo);
+        return serverResponse;
+    }
 }

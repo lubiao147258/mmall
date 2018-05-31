@@ -74,7 +74,7 @@
                     <a class="nav-link active" href="${basePath}/manage/product"><i class="icon-notebook"></i> 商品管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-settings"></i> 个人中心</a>
+                    <a class="nav-link" href="${basePath}/manage/order"><i class="icon-wrench"></i> 订单管理</a>
                 </li>
             </ul>
         </nav>

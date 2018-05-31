@@ -51,11 +51,11 @@
             <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
         </li>
     </ul>
-    <ul class="nav navbar-nav ml-auto mr-sm-3">
+    <%--<ul class="nav navbar-nav ml-auto mr-sm-3">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                <%--<img src="images/header_user.jpg" class="img-avatar" alt="头像">--%>
+                &lt;%&ndash;<img src="images/header_user.jpg" class="img-avatar" alt="头像">&ndash;%&gt;
                 <span class="hidden-md-down">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -64,7 +64,7 @@
             </div>
         </li>
 
-    </ul>
+    </ul>--%>
 </header>
 
 <div class="app-body">
@@ -85,7 +85,7 @@
                     <a class="nav-link active" href="#"><i class="icon-notebook"></i> 商品管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-settings"></i> 个人中心</a>
+                    <a class="nav-link" href="${basePath}/manage/order"><i class="icon-wrench"></i> 订单管理</a>
                 </li>
             </ul>
         </nav>

@@ -22,6 +22,22 @@
     <script src="${basePath}/resources/js/libs/respond.min.js"></script>
     <script src="${basePath}/resources/js/libs/html5shiv.min.js"></script>
     <![endif]- ->
+    <script>
+        $(document).ready(function() {
+            //显示查询条件
+            var typeCondition = $('#roleInput').val();
+            $('#status').val(typeCondition);
+
+            $("#status").change(function(){
+                $("#searchForm").submit();
+            });
+
+        });
+        function resett(){
+            $("#orderNo").val("");
+            $("#status").val("");
+        }
+    </script>
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <header class="app-header navbar">
@@ -35,11 +51,11 @@
                 <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav ml-auto mr-sm-3">
+        <%--<ul class="nav navbar-nav ml-auto mr-sm-3">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="true" aria-expanded="false">
-                    <%--<img src="images/header_user.jpg" class="img-avatar" alt="头像">--%>
+                    &lt;%&ndash;<img src="images/header_user.jpg" class="img-avatar" alt="头像">&ndash;%&gt;
                     <span class="hidden-md-down">Admin</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -48,7 +64,7 @@
                 </div>
             </li>
 
-        </ul>
+        </ul>--%>
     </header>
 
     <div class="app-body">
@@ -94,11 +110,11 @@
                                         <ul class="form-inline">
                                             <li class="form-group">
                                                 <label>订单号:</label>
-                                                <input type="text" id="orderNo" name="orderNo" class="form-control" value="${orderNo}" placeholder="根据订单号称搜索">
+                                                <input type="number" id="orderNo" name="orderNo" class="form-control" value="${orderNo}" placeholder="根据订单号称搜索">
                                             </li>
                                             <li class="form-group">
                                                 <label>订单状态:</label>
-                                                <input type="hidden" value="${status }" id="roleInput">
+                                                <input type="hidden" value="${status}" id="roleInput">
                                                 <select type="text" id="status" name="status" class="form-control ">
                                                     <option value="">所有订单</option>
                                                     <option value="0">已取消的订单</option>
@@ -115,6 +131,15 @@
                                             </li>
                                         </ul>
                                     </form>
+                                    <style>
+                                        input::-webkit-outer-spin-button,
+                                        input::-webkit-inner-spin-button {
+                                            -webkit-appearance: none;
+                                        }
+                                        input[type="number"]{
+                                            -moz-appearance: textfield;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +187,11 @@
                                                     <c:if test="${orderList.status eq 60}">交易关闭</c:if>
                                                 </td>
                                                 <td>${orderList.payment}</td>
-                                                <td></td>
+                                                <td>
+                                                    <c:if test="${orderList.status eq 20}">
+                                                        <button class="badge badge-pwd" onclick="sendGoodsNow(${orderList.orderNo})">立即发货</button>
+                                                    </c:if>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -173,16 +202,16 @@
                                         })
                                     </script>
                                     <script>
-                                        function setOrCancleAdminRole(id){
-                                            $("#msgBoxConfirmInfo").html("确定要修改角色信息吗？");
+                                        function sendGoodsNow(orderNo){
+                                            $("#msgBoxConfirmInfo").html("确认立即发货？");
                                             $("#msgBoxConfirm").modal('show');
                                             $("#msgBoxConfirmButton").on('click' , function(){//点击确认按钮时执行下面的方法
 
                                                 $.ajax({
                                                     type : 'POST',
-                                                    url : '${basePath}/manage/user/setOrCancleAdminRole',
+                                                    url : '${basePath}/manage/order/manageSendGoods',
                                                     data : {
-                                                        'userId' : id
+                                                        'orderNo' : orderNo
                                                     },
                                                     dataType : 'json',
                                                     success : function(data) {
